@@ -1,0 +1,86 @@
+.background {
+  width: 10px;
+  background-color: rgba(69, 79, 93, 1);
+  position: fixed;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+}
+
+.indicator {
+  background-color: rgba(88, 191, 191, 1);
+  position: relative;
+}
+
+.counter {
+  background-color: rgba(88, 191, 191, 1);
+  color: white;
+  text-align: center;
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  font-size: 8px;
+  padding: 3px;
+  transition: all ease 0.5s;
+}
+
+.counter.top {
+  bottom: -16px;
+  background-color: rgba(69, 79, 93, 1);
+}
+
+@media screen and (min-width: 319px) {
+  .background {
+    top: 51px;
+  }
+
+  .counter {
+    font-size: 8px;
+    padding: 3px;
+    width: 12px;
+  }
+}
+
+@media screen and (min-width: 349px) {
+  .background {
+    top: 58px;
+  }
+
+  .counter {
+    font-size: 9px;
+    padding: 3px;
+    width: 15px;
+  }
+}
+
+@media screen and (min-width: 449px) {
+  .background {
+    top: 62px;
+  }
+
+  .counter.top {
+    bottom: -18px;
+  }
+
+  .counter {
+    font-size: 12px;
+    padding: 4px;
+    width: 21px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .background {
+    top: 100px;
+  }
+  .counter {
+    font-size: 14px;
+    padding: 5px;
+    width: 30px;
+  }
+
+  .counter.top {
+    bottom: -20px;
+  }
+}

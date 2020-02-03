@@ -1,0 +1,10 @@
+@import "search-filters-grades";
+@media screen and (max-width: 449px) {
+  .content-container {
+    padding: 80px 0 40px;
+    .grade .value,
+    .points em {
+      font: 500 20px/70px museo, serif;
+    }
+  }
+}

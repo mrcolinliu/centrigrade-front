@@ -1,0 +1,166 @@
+@import '../question-local.scss';
+
+.question-type-select .answer {
+  .input-select {
+    overflow-y: scroll;
+    height: 80px;
+    @media screen {
+      @media (min-height: 470px) {
+        height: 80px;
+      }
+      @media (min-height: 570px) {
+        height: 140px;
+      }
+      @media (min-height: 870px) {
+        height: 260px;
+      }
+      @media (min-height: 970px) {
+        height: 360px;
+      }
+    }
+
+    ul {
+      margin-bottom: 46px;
+    }
+  }
+
+  .input-select::-webkit-scrollbar {
+    //vendor-prefix found
+    -webkit-appearance: none;
+    width: 7px;
+  }
+
+  .input-select::-webkit-scrollbar-thumb {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 4px;
+    background-color: $black_50;
+    //vendor-prefix found
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
+
+  .input-selected {
+    color: #58bfbf;
+  }
+
+  .not-applicable.input-text {
+    @media screen {
+      @media (min-height: 470px) {
+        height: 20px;
+      }
+      @media (min-height: 570px) {
+        height: 30px;
+      }
+    }
+  }
+}
+
+.not-applicable {
+  color: $color_fountain_blue_approx;
+  font: 500 15px/24px $font_stack_sans;
+  @media screen {
+    @media (max-width: 449px) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    @media (max-width: 349px) {
+      font-size: 13px;
+      line-height: 18px;
+    }
+  }
+  letter-spacing: 0.02em;
+  text-align: center;
+  //Instead of the line below you could use @include user-select($select)
+  user-select: none;
+
+  a:hover {
+    color: lighten($color_fountain_blue_approx, 15%);
+  }
+}
+
+app-tick-button {
+  margin-top: 10px;
+  margin-right: 10px;
+  float: left;
+}
+
+.search-text {
+  display: block;
+  color: #58bfbf;
+  font: 500 15px/20px museo-sans, sans-serif;
+  letter-spacing: 0.02em;
+  padding: 13px 0;
+}
+
+.centigrade-question {
+  border: 4px solid #ccc;
+  padding: 20px;
+  margin-bottom: 10px;
+
+  .question {
+    margin-bottom: 10px;
+  }
+}
+
+.selected-options {
+  display: block;
+  margin-top: 0;
+
+  ul li {
+    display: inline-block;
+    margin-right: 10px;
+    padding-top: 10px;
+
+    &.option {
+      border: 1px solid $color_bombay_approx;
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 15px;
+      color: $color_bombay_approx;
+      font: 400 12px/24px $font_stack_sans;
+      height: 24px;
+      letter-spacing: 0.05em;
+      padding: 1px 1px 1px 13px;
+      margin: 5px;
+
+      a.remove {
+        background: url("/assets/images/blue-circles-cross.png");
+        background-size: 24px 24px;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 100%;
+        display: inline-block;
+        height: 24px;
+        margin-left: 5px;
+        opacity: 0.5;
+        text-indent: -8000px;
+        //vendor-prefix found
+        -webkit-transition: 0.33s cubic-bezier(0.34, 0.14, 0.66, 0.86);
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: 0.33s cubic-bezier(0.34, 0.14, 0.66, 0.86);
+        //vendor-prefix found
+        -webkit-transition-property: opacity;
+        //Instead of the line below you could use @include transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+        transition-property: opacity;
+        width: 24px;
+
+        &:active {
+          opacity: 1;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.hidden-desktop {
+  @media screen and (min-width: 1000px) {
+    display: none;
+  }
+}
+
+.hidden-mobile {
+  @media screen and (max-width: 999px) {
+    display: none;
+  }
+}

@@ -1,0 +1,48 @@
+<div class="content-container">
+  <div class="section text-block">
+    <h1 class="heading">{{locale.title}}</h1>
+    <p class="normal">{{locale.paragraphOne | stringFormat : [courseCount]}}</p>
+    <p class="normal">{{locale.paragraphTwo}}</p>
+  </div>
+  <div class="section columnar tri-col">
+    <div>
+      <div class="course-group">
+        <header>
+          <h2>{{locale.fallbackTitle}}</h2>
+          <div class="circles">
+            <i class="glyph circle" *ngFor="let i of createRange(3)" [class.filled]="1 >= i"></i>
+          </div>
+        </header>
+        <div class="course-group-content">
+          <p class="normal">{{locale.fallbackText}}</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="course-group">
+        <header>
+          <h2>{{locale.solidTitle}}</h2>
+          <div class="circles">
+            <i class="glyph circle" *ngFor="let i of createRange(3)" [class.filled]="2 >= i"></i>
+          </div>
+        </header>
+        <div class="course-group-content">
+          <p class="normal">{{locale.solidText}}</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="course-group">
+        <header>
+          <h2>{{locale.ambitiousTitle}}</h2>
+          <div class="circles">
+            <i class="glyph circle" *ngFor="let i of createRange(3)" [class.filled]="3 >= i"></i>
+          </div>
+        </header>
+        <div class="course-group-content">
+          <p class="normal">{{locale.ambitiousText}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

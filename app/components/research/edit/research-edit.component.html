@@ -1,0 +1,56 @@
+<div class="content-container">
+
+  <div class="section columnar">
+    <div>
+      <h1 class="heading">
+        {{locale.titleText}}
+      </h1>
+    </div>
+    <div>
+      <div class="columnar" data-step="3" [attr.data-intro]="locale.overlayIntroduction">
+        <div>
+          <div class="input-button">
+            <button class="light" [class.checked]="type == 'course'" (click)="changeType('course')">{{locale.courseButtonText}}</button>
+          </div>
+        </div>
+        <div>
+          <div class="input-button">
+            <button class="light" [class.checked]="type == 'institution'" (click)="changeType('institution')">{{locale.universitiesButtonText}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section columnar">
+    <div>
+      <p class="normal">
+        {{locale.subtitleText}}
+      </p>
+      <div class="input-text">
+        <input type="text" placeholder="{{locale.inputPlaceholder}}" [(ngModel)]="newAreaText"  data-step="1" [attr.data-intro]="locale.overlayInputText">
+      </div>
+      <div class="suggestions-container">
+        <span class="suggestions-toggle" (click)="toggleSuggestions()">{{locale.suggestionsLabel}} <span class="caret"></span></span>
+        <div class="suggestions-dropdown" [class.show]="showSuggestions">
+          <ul>
+            <li *ngFor="let option of defaultOptionsDropdown" (click)="addSuggestion(option)">{{option.text}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="input-button">
+        <button class="proceed" (click)="addResearchArea()" data-step="2" [attr.data-intro]="locale.overlayAddButton" [disabled]="formSubmitted">{{locale.addResearchButtonText}}</button>
+      </div>
+    </div>
+    <div>
+      <h4>{{locale.researchAreasHeaderText}}</h4>
+      <ul class="research-areas">
+        <li *ngFor="let researchArea of researchAreas | search : 'type' : type : pipeRefreshToken">
+          <p class="normal">{{researchArea.text}}</p>
+          <button class="circle-remove" (click)="removeResearchArea(researchArea)" [disabled]="formSubmitted">{{locale.removeButtonText}}</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

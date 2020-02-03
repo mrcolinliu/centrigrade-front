@@ -1,0 +1,24 @@
+<div id="scrn">
+  <div id="scrn-c">
+    <header id="scrn-h">
+        <div class="centigrade-logo">
+            <img alt="" src="assets/images/centigrade-logo.png">
+        </div>
+        <div class="centigrade-strap">
+            {{locale.subtitleText}}
+        </div>
+    </header>
+    <div class="message-heading">
+      {{error.title}}
+    </div>
+    <div class="message-text">
+      {{error.message}}
+    </div>
+    <div class="form-control" style="background: none;">
+      <button class="input-control button" (click)="back()">{{locale.backButtonText}}</button>
+    </div>
+    <div class="form-control" style="background: none;">
+      <button class="input-control" (click)="logout()">{{locale.logoutButtonText}}</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+@import "search-filters.scss";
+
+p.normal a {
+  color: #454f5d;
+}
+
+body {
+  background: -webkit-linear-gradient(to left, white 0%, white 50%, #454f5d 50%, #454f5d 100%) fixed;
+  background: linear-gradient(to left, white 0%, white 50%, #454f5d 50%, #454f5d 100%) fixed;
+}
+
+.btn-reset {
+  position: relative;
+
+  a {
+    background-color: #454f5d;
+    border-radius: 3px;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    font: 500 14px/20px museo-sans, sans-serif;
+    letter-spacing: 0.05em;
+    padding: 10px;
+    position: relative;
+    right: 0;
+  }
+}
+
+.toggle-btn a {
+  padding: 2px 0;
+}
+@media screen and (min-width: 1000px) {
+  .section + .button-block.section {
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width: 999px) {
+  .button-block {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 0 72px;
+  }
+
+  .section + .button-block.section {
+    margin-top: 30px;
+  }
+}
+@media screen and (max-width: 449px) {
+  .button-block {
+    padding: 0 34px;
+  }
+}
+@media screen and (max-width: 349px) {
+  .button-block {
+    padding: 0 30px;
+  }
+}
+
+.validation-message {
+  color: grey;
+
+  &.red {
+    color: #d33;
+  }
+}
+
+h4 {
+  cursor: pointer;
+}
+
+h4 .nb {
+  color: #cbcdce;
+}
+
+h4 .em {
+  color: #e03200;
+}

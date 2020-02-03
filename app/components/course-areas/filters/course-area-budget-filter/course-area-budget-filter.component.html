@@ -1,0 +1,56 @@
+<div class="content-container">
+
+  <div class="section lead-block center">
+    <h1 class="heading">{{locale.titleText}}</h1>
+    <p class="normal">{{locale.subtitleText}}</p>
+  </div>
+
+  <div class="section lead-block divided">
+    <div class="budget cf">
+      <div class="input-button-circle budget-decrease">
+        <app-round-button class="large-text" (click)="decrementBudget(false)" color="secondary">-</app-round-button>
+      </div>
+      <div class="value">
+        {{locale.fromLabelText}}
+        <span>{{mainValueFrom.value}}</span>
+      </div>
+      <div class="input-button-circle budget-increase">
+        <app-round-button class="large-text" (click)="incrementBudget(false)" color="secondary">+</app-round-button>
+      </div>
+    </div>
+  <div  *ngIf="mainValueFrom.key != 'Oth'">
+      <p class="normal light center">
+        (<span *ngFor="let fromValue of subValuesFrom; let isLast=last">{{fromValue.value}}{{isLast? '':' | '}}</span>)
+      </p>
+    </div>
+  </div>
+
+  <div class="section lead-block divided">
+    <div class="budget cf">
+      <div class="input-button-circle budget-decrease">
+        <app-round-button class="large-text" (click)="decrementBudget(true)" color="secondary">-</app-round-button>
+      </div>
+      <div class="value">
+        {{locale.toLabelText}}
+        <span>{{mainValueTo.value}}</span>
+      </div>
+      <div class="input-button-circle budget-increase">
+        <app-round-button class="large-text" (click)="incrementBudget(true)" color="secondary">+</app-round-button>
+      </div>
+    </div>
+    <div *ngIf="mainValueTo.key != 'Oth'">
+      <p class="normal light center">
+        (<span *ngFor="let toValue of subValuesTo; let isLast=last">{{toValue.value}}{{isLast? '':' | '}}</span>)
+      </p>
+    </div>
+  </div>
+
+  <div class="section lead-block center">
+    <div class="input-button">
+      <button (click)="changeCurrency()">{{locale.changeCurrencyButtonText}}</button>
+    </div>
+    <div class="input-button">
+      <button (click)="reset()" [disabled]="formSubmitted">{{locale.removeFilterButtonText}}</button>
+    </div>
+  </div>
+</div>

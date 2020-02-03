@@ -1,0 +1,161 @@
+<div id="scrn-table">
+  <div id="scrn-cell">
+    <div id="scrn-p">
+
+      <header id="scrn-h">
+        <div class="centigrade-strap">
+          {{locale.title}}
+        </div>
+      </header>
+
+      <div id="scrn-c">
+        <div class="columns">
+          <form class="column" (submit)="submitProfileForm()">
+            <h2 class="legend">
+              {{locale.personalDetailsHeaderText}}
+            </h2>
+            <div class="form-control">
+              <label for="firstName">{{locale.firstNamePlaceholder}}</label>
+              <input (click)="onClickProfileInput()" id="firstName" type="text" class="input-control" [formControl]="profileForm.controls['firstName']" spellcheck="false"/>
+              <div class="validation-error" *ngIf="(profileFormSubmitted || profileForm.controls['firstName'].dirty) && !profileForm.controls['firstName'].valid">
+                <div class="form-hint">
+                  <div>{{locale.firstNameValidationText}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-control">
+              <label for="lastName">{{locale.lastNamePlaceholder}}</label>
+              <input (click)="onClickProfileInput()" id="lastName" type="text" class="input-control" [formControl]="profileForm.controls['secondName']" spellcheck="false"/>
+              <div class="validation-error" *ngIf="(profileFormSubmitted || profileForm.controls['secondName'].dirty) && !profileForm.controls['secondName'].valid">
+                <div class="form-hint">
+                  <div>{{locale.lastNameValidationText}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-control">
+              <label for="email">{{locale.emailPlaceholder}}</label>
+              <input (click)="onClickProfileInput()" id="email" type="email" class="input-control" [formControl]="profileForm.controls['email']" spellcheck="false"/>
+              <div class="validation-error" *ngIf="(profileFormSubmitted || profileForm.controls['email'].dirty) && !profileForm.controls['email'].valid">
+                <div class="form-hint">
+                  <div>{{locale.emailValidationText}}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-control">
+
+              <label for="gender">{{locale.genderPlaceholder}}</label>
+              <select (click)="onClickProfileInput()" id="gender" class="input-control select-control" [formControl]="profileForm.controls['gender']">
+                <option disabled value="null">{{locale.genderPlaceholder}}</option>
+                <option disabled>{{locale.comboSeparator}}</option>
+
+                <option *ngFor="let item of genderOptions | orderBy : 'order' " [value]="item.id">{{item.gender}}</option>
+              </select>
+
+              <span class="caret"></span>
+              <div class="validation-error" *ngIf="(profileFormSubmitted || profileForm.controls['gender'].dirty) && !profileForm.controls['gender'].valid">
+                <div class="form-hint">
+                  <div>{{locale.genderValidationText}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-control">
+              <label for="country">{{locale.countryPlaceholder}}</label>
+              <select (click)="onClickProfileInput()" id="country" class="input-control select-control" [formControl]="profileForm.controls['country']">
+
+                <option disabled value="null">{{locale.countryPlaceholder}}</option>
+
+                <option disabled>{{locale.comboSeparator}}</option>
+                  <ng-container *ngFor="let country of countryOptions; index as i; ">
+                      <ng-container *ngIf="i">
+                          <ng-container *ngIf="countryOptions[i-1].priority != countryOptions[i].priority">
+                              <option disabled>{{locale.comboSeparator}}</option>
+                          </ng-container>
+                      </ng-container>
+                      <option [value]="country.countryId">{{country.countryName}}</option>
+                  </ng-container>
+
+              </select>
+
+
+              <span class="caret"></span>
+            </div>
+            <div class="form-control">
+              <label for="displayLanguage">{{locale.displayLanguagePlaceholder}}</label>
+              <select (click)="onClickProfileInput()" id="displayLanguage" class="input-control select-control" [formControl]="profileForm.controls['displayLanguage']">
+                <option disabled value="null">{{locale.displayLanguagePlaceholder}}</option>
+                <option disabled>{{locale.comboSeparator}}</option>
+                <option *ngFor="let item of displayLanguageOptions" [value]="item.id">{{item.language}}</option>
+              </select>
+              <span class="caret"></span>
+            </div>
+            <div class="form-control">
+              <label for="school">{{locale.schoolPlaceholder}}</label>
+              <input (click)="onClickProfileInput()" id="school" type="text" class="input-control" [formControl]="profileForm.controls['school']"/>
+            </div>
+            <div class="form-control">
+                <div class="input-control check-control" [class.checked]="profileForm.controls['emailPreference'].value">
+                    <input (click)="onClickProfileInput()" type="checkbox" [formControl]="profileForm.controls['emailPreference']">
+                </div>
+                <p>{{locale.contactInputText}}</p>
+            </div>
+            <div *ngIf="messageCopyProfile" class="{{ messageClassProfile }}" role="errorMessage">{{ messageCopyProfile }}</div>
+            <div class="form-control">
+              <input type="submit" value="{{locale.saveChangesButtonText}}" class="input-control button" [disabled]="formSubmitted"/>
+            </div>
+          </form>
+
+          <form class="column" (submit)="submitPasswordForm()">
+            <h2 class="legend">
+              {{locale.changePasswordHeaderText}}
+            </h2>
+            <div class="form-control">
+              <label for="currentPassword">{{locale.currentPasswordPlaceholder}}</label>
+              <input (click)="onClickPasswordInput()" id="currentPassword" type="password" class="input-control show-pad" [formControl]="passwordForm.controls['currentPassword']" />
+              <!--<span><a href="#">Show</a></span>-->
+              <div class="validation-error" *ngIf="(passwordFormSubmitted || passwordForm.controls['currentPassword'].dirty) && !passwordForm.controls['currentPassword'].valid">
+                <div class="form-hint">
+                  <div>{{locale.currentPasswordValidationText}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-control">
+              <label for="newPassword">{{locale.newPasswordPlaceholder}}</label>
+              <input (click)="onClickPasswordInput()" id="newPassword" type="password" class="input-control show-pad" [formControl]="passwordForm.controls['newPassword']" />
+              <!--<span><a href="#">Show</a></span>-->
+              <div class="validation-error" *ngIf="(passwordFormSubmitted || passwordForm.controls['newPassword'].dirty) && !passwordForm.controls['newPassword'].valid">
+                <div class="form-hint">
+                  <div>{{locale.newPasswordValidationText | stringFormat : [this.passwordLength]}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-control">
+              <label for="confirmPassword">{{locale.confirmNewPasswordPlaceholder}}</label>
+              <input (click)="onClickPasswordInput()" id="confirmPassword" type="password" class="input-control show-pad" [formControl]="passwordForm.controls['confirmPassword']" />
+              <!--<span><a href="#">Show</a></span>-->
+              <div class="validation-error" *ngIf="(passwordFormSubmitted || passwordForm.controls['confirmPassword'].dirty) && !passwordForm.controls['confirmPassword'].valid">
+                <div class="form-hint">
+                  <div *ngIf="passwordForm.controls['confirmPassword'].hasError('required')">{{locale.confirmNewPasswordValidationText | stringFormat : [this.passwordLength]}}</div>
+                  <div *ngIf="!passwordForm.controls['confirmPassword'].hasError('required') && passwordForm.controls['confirmPassword'].hasError('unequalValues')">
+                    {{locale.confirmNewPasswordMatchValidationText}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="messageCopyPassword" class="{{ messageClassPassword }}" role="errorMessage">{{ messageCopyPassword }}</div>
+            <div class="form-control">
+              <input type="submit" value="{{locale.updatePasswordButtonText}}" class="input-control button" [disabled]="formSubmitted"/>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer id="scrn-f">
+        <div class="cancel">
+          <a (click)="goBack()">{{locale.backLinkText}}</a>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</div>

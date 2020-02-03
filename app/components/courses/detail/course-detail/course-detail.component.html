@@ -1,0 +1,186 @@
+<div class="content-container">
+  <div class="section full-bleed section-image" *ngIf="course.image">
+    <img [src]="course.image" alt="" />
+  </div>
+  <div class="section columnar" style="padding-top: 10px;" data-step="1" [attr.data-intro]="locale.overlayIntroduction" data-scrollTo="tooltip">
+    <div>
+      <h1 class="heading">{{course.title}}</h1>
+      <p class="normal light">
+        {{course.code}}
+      </p>
+    </div>
+    <div>
+      <div class="heading-logo">
+        <img *ngIf="course.institution.institutionLogo" [src]="course.institution.institutionLogo" alt="logo" />
+      </div>
+    </div>
+  </div>
+
+  <div class="section columnar">
+    <div>
+      <div class="input-button">
+        <button [routerLink]="['/centigrade/courses/university-detail', {institutionId: course.institution.institutionId}]">
+          {{course.institution.institutionName}}
+          <img class="icon" src="assets/images/next-arrow.png" alt="">
+        </button>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+  <div *ngFor="let row of textSectionRows" class="section columnar divided">
+    <div *ngIf="row.leftItem.columns == 'double'">
+      <h4>{{row.leftItem.header}}</h4>
+      <p class="normal light" [innerHtml]="row.leftItem.text | parseFormattedText"></p>
+    </div>
+    <div *ngIf="row.leftItem.columns == 'double'">
+      <ul class="bullet-list">
+        <li *ngFor="let datum of row.leftItem.data">
+          {{datum.value}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="row.leftItem.columns == 'single'">
+      <h4>
+        {{row.leftItem.header}}
+      </h4>
+      <p class="normal light" [innerHtml]="row.leftItem.text | parseFormattedText"></p>
+      <ul class="bullet-list" *ngIf="row.leftItem.data">
+        <li *ngFor="let datum of row.leftItem.data">
+          {{datum.value}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="row.leftItem && row.rightItem">
+      <h4>
+        {{row.rightItem.header}}
+      </h4>
+      <p class="normal light" [innerHtml]="row.rightItem.text | parseFormattedText"></p>
+      <ul class="bullet-list" *ngIf="row.rightItem.data">
+        <li *ngFor="let datum of row.rightItem.data">
+          {{datum.value}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="entrySection" class="section columnar divided" data-step="2" [attr.data-intro]="locale.overlayEntrance">
+    <h4>{{entrySection.header}}</h4>
+
+
+    <div>
+      <p class="normal light" *ngIf="!entrySection.tariff">{{entrySection.text}}</p>
+      <div class="cf entry-requirements" *ngIf="entrySection.tariff">
+        <div class="requirement" *ngFor="let item of entrySection.tariff">
+            <h3>{{item.value}}</h3>
+            <p>{{item.key}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <ul class="bullet-list">
+        <li *ngFor="let item of entrySection.data" [innerHtml]="item.value | parseFormattedText"></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div *ngIf="satisfactionSection" class="section columnar divided">
+    <h3>{{locale.satisfactionHeaderText}}</h3>
+    <div>
+      <div class="rating" *ngFor="let leftColumn of satisfactionColumns.left">
+        <span>{{leftColumn.key}}</span>
+        <star-rating [value]="leftColumn.value / 20"></star-rating>
+      </div>
+    </div>
+    <div>
+      <div class="rating" *ngFor="let rightColumn of satisfactionColumns.right">
+        <span>{{rightColumn.key}}</span>
+        <star-rating [value]="rightColumn.value / 20"></star-rating>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="chartSection" class="section columnar divided" data-step="3" [attr.data-intro]="locale.overlayGraduate">
+    <h3>{{chartSection.header}}</h3>
+    <div>
+      <div *ngIf="graphReady">
+        <doughnut-chart [datasets]="datasets" [labels]="doughnutChartLabels" [colors]="chartColors" [options]="options" (onChartHover)="chartHovered($event)"
+          (onChartClick)="chartClicked($event)">
+        </doughnut-chart>
+      </div>
+      <p class="normal margin-top">
+      </p>
+    </div>
+    <div>
+      <p class="normal" [innerHtml]="chartSection.text | parseFormattedText">
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="feesSection" class="section divided">
+    <div class="columnar">
+      <h4>{{feesSection.header}}</h4>
+      <div>
+        <p class="normal light" [innerHtml]="feesSection.text | parseFormattedText"></p>
+      </div>
+      <div>
+        <ul class="bullet-list">
+          <li *ngFor="let datum of feesSection.data" [innerHtml]="datum.value | parseFormattedText"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="input-button push-down">
+        <a href="{{course.website}}" class="button" target="_blank" data-step="4" [attr.data-intro]="locale.overlayWebsite">{{locale.websiteButtonText}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section columnar divided research-section" data-step="5" [attr.data-intro]="locale.overlayResearch">
+    <div>
+      <h4>{{locale.researchAreasHeaderText}}</h4>
+      <p class="normal light">
+        {{locale.researchAreasSubtitleText}}
+      </p>
+      <div class="interests">
+        <div class="interest" *ngFor="let researchArea of researchAreas" [class.add-note]="researchArea.userRating">
+          <span class="text">{{researchArea.areaHeader}}</span>
+          <star-rating class="rating" mode="edit" [value]="researchArea.userRating" rating-step="1" (change)="onResearchAreaRatingChanged($event, researchArea)"></star-rating>
+          <div class="input-textarea">
+            <textarea placeholder="{{locale.researchAreasAddNotePlaceholder}}" [value]="researchArea.userText == null ? '' : researchArea.userText" [formControl]="researchArea.noteControl"></textarea>
+            <div class="characters-remaining" *ngIf="researchArea.noteIsSaving != null && !researchArea.noteIsSaving">
+              {{locale.notesUpdateLabelText}}
+            </div>
+            <div class="saving characters-remaining" *ngIf="researchArea.noteIsSaving">
+              {{locale.notesSavingLabelText}}<span>.</span><span>.</span><span>.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-button">
+        <button routerLink="/centigrade/research/course">{{locale.researchAreasEditButtonText}}</button>
+      </div>
+    </div>
+    <div>
+      <div class="overall-rating">
+        <h3>{{locale.courseRatingHeader}}</h3>
+        <star-rating class="cf rating" mode="edit" [value]="course.userRating" rating-step="1" (change)="onRatingChanged($event)"></star-rating>
+      </div>
+      <div class="my-notes">
+        <h3>{{locale.notesHeaderText}}</h3>
+        <div class="input-textarea">
+          <textarea placeholder="{{locale.notesPlaceholderText}}" maxlength="500" [value]="note == null ? '' : note" [formControl]="noteControl" class="notes"></textarea>
+          <div class="characters-remaining" *ngIf="noteIsSaving != null && !noteIsSaving">
+            {{locale.notesUpdateLabelText}}
+          </div>
+          <div class="saving characters-remaining" *ngIf="noteIsSaving">
+            {{locale.notesSavingLabelText}}<span>.</span><span>.</span><span>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

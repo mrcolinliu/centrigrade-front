@@ -1,0 +1,259 @@
+#scrn-table {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+#scrn-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#scrn-p {
+  margin: 0 auto;
+  max-width: 350px;
+}
+
+#scrn-h .centigrade-logo {
+  margin-bottom: 15px;
+  text-align: center;
+}
+#scrn-h .centigrade-logo img {
+  width: 207px;
+}
+
+#scrn-h .centigrade-strap {
+  color: white;
+  font: 500 15px/22px museo-sans, sans-serif;
+  letter-spacing: 0.02em;
+  margin: 0 auto;
+  max-width: 280px;
+  text-align: center;
+}
+
+#scrn-f {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+#scrn-f .sign-up {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font: 500 15px/20px museo-sans, sans-serif;
+  text-align: center;
+}
+#scrn-f .sign-up a:link,
+#scrn-f .sign-up a:visited {
+  color: white;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+}
+
+.forgotton-pwd {
+  color: white;
+  font: 500 15px/20px museo-sans, sans-serif;
+  padding: 15px 0;
+  text-align: center;
+}
+.forgotton-pwd a:link,
+.forgotton-pwd a:visited {
+  color: white;
+}
+
+/* Form control elements */
+.form-control {
+  height: 48px;
+  position: relative;
+}
+.form-control .input-control {
+  -webkit-appearance: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  border-style: none;
+  box-sizing: border-box;
+  color: white;
+  font: 500 14px museo-sans, sans-serif;
+  height: 48px;
+  letter-spacing: 0.05em;
+  line-height: 48px;
+  padding: 0 18px;
+  width: 100%;
+}
+.form-control span {
+  line-height: 48px;
+  position: absolute;
+  right: 18px;
+  top: 0;
+}
+.form-control span a {
+  color: rgba(255, 255, 255, 0.5);
+  font: 500 14px museo-sans, sans-serif;
+  letter-spacing: 0.05em;
+}
+.form-control .input-control.show-pad {
+  padding-right: 54px;
+}
+.form-control .input-control.button {
+  background-color: white;
+  color: #454f5d;
+  cursor: pointer;
+  text-align: center;
+}
+
+.form-control + .form-control {
+  margin-top: 18px;
+}
+
+/* do not group these rules */
+.input-control::-webkit-input-placeholder {
+  color: white;
+}
+
+.input-control:-moz-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.input-control::-moz-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.input-control:-ms-input-placeholder {
+  color: white;
+}
+
+@media screen and (max-width: 449px) {
+  .forgotton-pwd {
+    font-size: 14px;
+  }
+  .form-control {
+    height: 42px;
+  }
+  .form-control .input-control {
+    font-size: 13px;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 14px;
+  }
+  .form-control span {
+    line-height: 42px;
+    right: 14px;
+  }
+  .form-control span a {
+    font-size: 13px;
+  }
+  .form-control .input-control.show-pad {
+    padding-right: 48px;
+  }
+  .form-control + .form-control {
+    margin-top: 14px;
+  }
+}
+
+@media screen and (max-width: 349px) {
+  .forgotton-pwd {
+    font-size: 12px;
+  }
+  .form-control + .form-control {
+    margin-top: 12px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #scrn-p {
+    background: url(/assets/images/iphones.png) no-repeat 0 50%;
+    background-size: 403px;
+    padding: 90px 0 90px 420px;
+  }
+  #scrn-h {
+    padding-bottom: 30px;
+  }
+  #scrn-f {
+    padding-top: 18px;
+  }
+  #scrn-f .sign-up {
+    border-radius: 3px;
+    height: 62px;
+    line-height: 62px;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  #scrn-p {
+    padding: 90px 0;
+  }
+  #scrn-h {
+    padding-bottom: 30px;
+  }
+  #scrn-h .centigrade-strap {
+    padding: 0 38px;
+  }
+  #scrn-f {
+    padding-top: 18px;
+  }
+  #scrn-f .sign-up {
+    border-radius: 3px;
+    height: 62px;
+    line-height: 62px;
+  }
+}
+
+@media screen and (max-width: 449px) {
+  #scrn-p {
+    padding: 70px 34px 130px;
+  }
+  #scrn-h {
+    padding-bottom: 40px;
+  }
+  #scrn-h .centigrade-strap {
+    padding: 0 30px;
+  }
+  #scrn-f {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(47, 147, 149, 0.9);
+    bottom: 0;
+    left: 0;
+    padding-top: 0;
+    position: fixed;
+    width: 100%;
+  }
+  #scrn-f .sign-up {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 15px;
+    height: 58px;
+    line-height: 58px;
+  }
+}
+
+@media screen and (max-width: 349px) {
+  #scrn-p {
+    padding: 50px 30px 100px;
+  }
+  #scrn-h {
+    padding-bottom: 30px;
+  }
+  #scrn-h .centigrade-strap {
+    font-size: 13px;
+    line-height: 18px;
+    padding: 0 26px;
+  }
+  #scrn-f .sign-up {
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+  }
+}
+
+@media screen and (min-width: 1000px) and (min-height: 720) {
+  /*html {
+        overflow: hidden;
+    }
+    #scrn {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }*/
+}
+
+.underline {
+  text-decoration: underline;
+}

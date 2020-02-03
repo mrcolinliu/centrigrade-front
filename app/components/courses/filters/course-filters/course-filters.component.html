@@ -1,0 +1,50 @@
+<div class="content-container">
+  <div class="section columnar">
+    <div>
+      <h1 class="heading">
+        {{locale.titleText}}
+        <span>{{locale.subtitleText}}</span>
+      </h1>
+    </div>
+    <div>
+      <div class="input-button">
+        <button (click)="resetFilters()" data-step="2" data-intro="Reset filters here">
+          {{locale.resetFiltersButtonText}}
+          <img class="icon" src="assets/images/next-arrow.png" alt="">
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="section filter-courses columnar" *ngIf="query">
+    <div>
+      <div class="filter-group" *ngFor="let filter of filterColumns.left">
+        <h4>{{filter.title}}</h4>
+        <ul>
+          <li *ngFor="let option of filter.options">
+            <span *ngFor="let pair of option.values">
+              <p class="normal">
+                {{pair.value}}
+              </p>
+            </span>
+            <app-tick-button (click)="select(filter, option)" [selected]="option.selected" data-step="1" [attr.data-intro]="locale.overlayFilter"></app-tick-button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="filter-group" *ngFor="let filter of filterColumns.right">
+        <h4> {{filter.title}}</h4>
+        <ul>
+          <li *ngFor="let option of filter.options">
+            <span *ngFor="let pair of option.values">
+              <p class="normal">
+                {{pair.value}}
+              </p>
+            </span>
+            <app-tick-button (click)="select(filter, option)" [selected]="option.selected"></app-tick-button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

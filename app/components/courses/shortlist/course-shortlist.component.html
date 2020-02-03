@@ -1,0 +1,99 @@
+<div class="content-container">
+    <div class="section divided columnar tri-col">
+        <div>
+            <h1 class="heading">
+               {{locale.titleText}}
+            </h1>
+        </div>
+        <div>
+            <div class="input-text" data-step="4" [attr.data-intro]="locale.overlayIntroduction">
+                <input type="text" placeholder="{{locale.searchPlaceholder}}" [(ngModel)]="searchText" />
+                <input type="submit" value="" class="widget search">
+            </div>
+        </div>
+        <div>
+            <div class="input-button hidden-mobile">
+                <button (click)="compare()" data-step="6" [attr.data-intro]="locale.overlayCompare">
+                    {{locale.compareCoursesButtonText}}
+                    <img alt="" class="icon" src="assets/images/next-arrow.png">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section divided shortlist cf" data-step="1" [attr.data-intro]="locale.overlayShortlist" data-scrollTo="tooltip" *ngIf="courses.length > 0">
+
+        <div  class="shortlist-items">
+
+            <div class="shortlist-item" *ngFor="let course of courses | search : 'title' : searchText; index as i">
+
+
+                <div class="panel">
+                    <div class="location" [style.background-image]="course.safeImage">
+                        <div class="logo">
+                            <img src="{{ course.logo }}" alt="{{ course.institution }}">
+                        </div>
+                        <button (click)="removeShortlist(course.courseId)" class="remove-shortlist">
+                            Close
+                        </button>
+                    </div>
+                    <div class="course">
+                        <div title="Solid" class="relevance-mark">
+                            <i class="glyph circle filled"></i><i class="glyph circle filled"></i><i class="glyph circle"></i>
+                        </div>
+
+                        <div class="title">
+                            <h4 class="dark two-line">
+                                <a (click)="goToCourse(course)" class="link">{{ course.title }}</a>
+                            </h4>
+                            <h4 class="two-line">
+                                <a (click)="goToInstitution(course)" class="link">{{course.institution}}</a>
+                            </h4>
+                        </div>
+                        <p class="normal light one-line">
+                            {{ course.location }}
+                        </p>
+                    </div>
+                    <div class="data">
+                        <ul class="normal">
+                            <li class="card-list" *ngIf="course.details;else listBlank">
+                                {{ course.details }}
+                            </li>
+                            <li class="card-list" *ngIf="course.rank;else listBlank">
+                                #{{ course.rank }} <span class="light">in the UK</span>
+                            </li>
+                            <li class="card-list" *ngIf="course.studentSatisfaction;else listBlank">
+                                <i class="glyph ss"></i>{{ course.studentSatisfaction | number:'2.0-0' }}% <span class="light"> {{ locale.studentSatisfaction}}</span>
+                            </li>
+                            <li class="card-list" *ngIf="course.employability;else listBlank">
+                                <i class="glyph er"></i>{{ course.employability | number:'2.0-0' }}% <span class="light">{{ locale.employabilityRate}}</span>
+                            </li>
+                        </ul>
+
+                        <ng-template #listBlank>
+                          <li class="card-list">&nbsp;</li>
+                        </ng-template>
+
+                        <div class="rating">
+                            <span>
+                                {{locale.ratingLabelText}} rating {{ course.courseRating }}
+                            </span>
+                            <star-rating [value]="course.courseRating"></star-rating>
+                        </div>
+                    </div>
+<!--                         <div class="actions cf">
+                            <app-tick-button [selected]="course.selected" (click)="course.selected = !course.selected" data-step="5" [attr.data-intro]="locale.overlayClickCompare" [disableClick]="disableClick">Select course</app-tick-button>
+                            <div class="text">Add to compare</div>
+                        </div> -->
+
+                        <div class="actions cf">
+                            <button (click)="course.selected = !course.selected" class="compare-button" [ngClass]="{'selected': course.selected}">
+                                {{ locale.addToCompareLabelText}}
+                            </button>
+                        </div>
+
+                </div><!-- Panel end -->
+            </div>
+        </div>
+    </div>
+</div>

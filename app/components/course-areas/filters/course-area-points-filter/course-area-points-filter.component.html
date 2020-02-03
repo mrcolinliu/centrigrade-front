@@ -1,0 +1,33 @@
+<div class="content-container">
+
+  <div class="section lead-block center">
+    <h1 class="heading">{{locale.titleText}}</h1>
+    <p class="normal">{{locale.subtitleText}}</p>
+  </div>
+
+  <div class="section lead-block">
+    <div class="grade cf">
+      <div class="input-button-circle grade-decrease">
+        <app-round-button class="large-text" (click)="decreaseGrades()" color="secondary">-</app-round-button>
+      </div>
+      <div class="value" *ngIf="!!grade">
+        {{grade.value}}
+      </div>
+      <div class="input-button-circle grade-increase">
+        <app-round-button class="large-text" (click)="increaseGrades()" color="secondary">+</app-round-button>
+      </div>
+    </div>
+    <div class="cf">
+      <p class="qualification" *ngIf="!!grade">
+        {{getGradeString(grade)}}
+      </p>
+      <div *ngIf="!!otherGrades">
+      <div class="points" *ngFor="let otherGrade of otherGrades">
+        <div>
+          <em>{{otherGrade.value}}</em> {{getGradeString(otherGrade)}}
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

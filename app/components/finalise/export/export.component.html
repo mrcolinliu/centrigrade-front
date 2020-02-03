@@ -1,0 +1,16 @@
+<div class="content-container">
+
+  <div class="section lead-block export">
+    <h1 class="heading">{{locale.titleText}}</h1>
+    <p class="normal light">
+      {{locale.subtitleText}}
+    </p>
+    <div class="input-text" data-step="1" [attr.data-intro]="locale.overlayEmail">
+      <input type="email" placeholder="{{locale.emailPlaceholder}}" [(ngModel)]="emailAddress" />
+    </div>
+    <div class="input-button" data-step="2" [attr.data-intro]="locale.overlayShortlist">>
+      <button (click)="export()" [disabled]="formSubmitted">{{locale.sendButtonText}}</button>
+    </div>
+  </div>
+
+</div>

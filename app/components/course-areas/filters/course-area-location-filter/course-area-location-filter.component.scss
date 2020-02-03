@@ -1,0 +1,67 @@
+@import "search-filters-locations";
+.input-text input {
+  height: 100%;
+}
+
+.push-up {
+  padding-bottom: 100px;
+}
+
+@media screen and (min-width: 1000px) {
+  .location-filter,
+  .location-filter-results {
+    padding-right: 0;
+  }
+}
+
+.expando {
+  height: 100%;
+}
+
+.region-list {
+  .region-countries {
+    .expando-btn {
+      left: 14px;
+    }
+    li {
+      padding-right: 0;
+
+      span {
+        padding-right: 28px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+app-tick-button {
+  position: absolute;
+  right: 0;
+  top: 17px;
+}
+
+.map-image {
+  float: left;
+  width: 60%;
+  margin-left: 4%;
+  margin-top: 10px;
+}
+
+.location-map {
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 999px) {
+  .map-image {
+    padding-top: 20px;
+    float: none;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .location-filter-results {
+    min-height: 400px;
+  }
+}

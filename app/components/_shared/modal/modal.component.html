@@ -1,0 +1,19 @@
+<div class="pop-up-mask" id="pop-up-mask" [class.shown]="isOpen">
+  <div class="pop-up-outer">
+    <div class="pop-up-inner">
+      <div class="pop-up-box">
+        <div class="heading">
+          {{title}}
+        </div>
+        <div class="text">
+          <p [innerHtml]="message | parseFormattedText"></p>
+          <div #template class="template"></div>
+          <a class="confirm" *ngIf="!!callback" (click)="clickHandler()">{{confirmText}}</a>
+        </div>
+        <div class="close-bn">
+          <a (click)="close()">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

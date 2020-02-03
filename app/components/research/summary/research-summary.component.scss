@@ -1,0 +1,89 @@
+@import 'research-summary.scss';
+
+app-tick-button {
+  position: absolute;
+  top: 13px;
+  left: 0;
+  width: 24px;
+}
+
+.suggestions-container {
+  position: relative;
+  color: #454f5d;
+}
+
+.suggestions-toggle {
+  display: block;
+  font-size: 10pt;
+  text-align: right;
+  height: 32px;
+  line-height: 16px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+span.caret {
+  background: transparent url(../../../../assets/images/small-filter-arrow.png) no-repeat 50% 50%;
+  background-size: 16px;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  text-indent: -8000px;
+  position: relative;
+  top: 4px;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  height: 0;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.suggestions-dropdown.show {
+  height: auto;
+  box-shadow: 1px 1px 10px 1px rgba(136, 136, 136, 0.8);
+}
+
+.suggestions-dropdown ul li {
+  padding: 1em;
+  margin: 0.5em;
+  font-size: 10pt;
+  cursor: pointer;
+}
+
+.suggestions-dropdown ul li + li {
+  padding-top: 0;
+}
+
+.suggestions-dropdown ul li:hover {
+  color: #222;
+}
+
+.area-rating {
+  padding: 0.8em;
+}
+
+.interests .interest.add-note p.normal {
+  display: none;
+}
+
+h4 a {
+  color: #58bfbf;
+  font: 500 15px/22px museo-sans, sans-serif;
+  letter-spacing: 0.02em;
+}
+h4.dark a {
+  color: #454f5d;
+}
+
+.area-header {
+  width: calc(100% - 150px);
+}
+
+// CEF-26 resolve FF bug
+.expando {
+  text-indent: 0px;
+}

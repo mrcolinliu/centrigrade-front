@@ -1,0 +1,15 @@
+@import "search-filters-languages";
+.input-text input {
+  height: 100%;
+}
+
+.languages {
+  li {
+    position: relative;
+    app-tick-button {
+      position: absolute;
+      right: 0;
+      top: 15px;
+    }
+  }
+}

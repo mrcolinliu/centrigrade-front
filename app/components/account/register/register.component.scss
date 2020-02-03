@@ -1,0 +1,12 @@
+@import 'account-register.scss';
+
+.form-control + span {
+  display: block;
+  margin-top: 0.5em;
+  color: #fff;
+  font-size: 9pt;
+}
+
+.form-control {
+  height: auto;
+}

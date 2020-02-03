@@ -1,0 +1,81 @@
+<div id="container" [class.menu-open]="menuOpen">
+  <div class="wrapper">
+    <div class="outer-container">
+      <div class="inner-container">
+        <router-outlet></router-outlet>
+        <div style="height: 70px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="fixed-header" [class.menu-open]="menuOpen">
+  <div class="wrapper">
+    <div class="outer-container">
+      <div class="inner-container">
+        <div class="content-header">
+          <div class="centigrade-logo">
+            <a (click)="goToHome()">
+              <img src="assets/images/centigrade-logo-desktop.png" alt="">
+            </a>
+          </div>
+          <breadcrumb [breadcrumbs]="breadcrumbs" [disableBackButton]="disableBackButton"></breadcrumb>
+          <div class="side-menu">
+            <a (click)="toggleMenu()">Menu</a>
+          </div>
+          <app-main-nav></app-main-nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<footer id="fixed-footer" [class.menu-open]="menuOpen" *ngIf="showFooter">
+  <div class="wrapper">
+    <div class="outer-container">
+      <div class="inner-container">
+        <div *ngIf="helpText">
+          <app-tick-button clear="true" *ngIf="hasCheckbox" [selected]="checked" (click)="actionClicked()" [attr.data-intro]="helpText"></app-tick-button>
+        </div>
+        <div *ngIf="!helpText">
+          <app-tick-button clear="true" *ngIf="hasCheckbox" [selected]="checked" (click)="actionClicked()"></app-tick-button>
+        </div>
+        <div class="continue-bn" *ngIf="!actionIsPath" (click)="action()">
+          {{title}}
+          <a class="bn proceed">
+            <span>&gt;</span>
+          </a>
+        </div>
+        <div class="continue-bn" *ngIf="actionIsPath && !hasCheckbox" [routerLink]="action" [attr.data-intro]="helpText">
+          {{title}}
+          <a class="bn proceed">
+          <span>&gt;</span>
+        </a>
+        </div>
+        <div class="continue-bn" *ngIf="actionIsPath && hasCheckbox" (click)="actionClicked()">
+          {{title}}
+          <a class="bn proceed" [routerLink]="action">
+          <span>&gt;</span>
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<div id="fixed-aside" [class.menu-open]="menuOpen" (click)="closeMenu()" [attr.data-intro]="locale.overlayMainMenu" data-highlightClass="highlight-menu" data-tooltipClass="tooltip-menu">
+  <div class="wrapper">
+    <div class="aside" [class.menu-open]="menuOpen">
+      <div class="help-link">
+        <!--a routerLink="/help">
+          <span>?</span>
+        </a-->
+        <a href="javascript:void(0);" onclick="javascript:introJs().start();">
+          <span>?</span>
+        </a>
+      </div>
+      <app-main-nav></app-main-nav>
+    </div>
+  </div>
+</div>

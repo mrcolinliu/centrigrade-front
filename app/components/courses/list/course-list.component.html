@@ -1,0 +1,126 @@
+<div class="content-container">
+  <div class="section columnar offset search">
+    <div>
+      <h1 class="heading">
+        {{title}}
+      </h1>
+      <p class="normal">
+        {{locale.subtitleText | stringFormat : [courseCount, shortlistedCount]}}
+      </p>
+      <p class="normal">
+        <i class="glyph circle filled"></i><i class="glyph circle"></i><i class="glyph circle"></i>
+        {{locale.categoryOneTitle}}: <span class="light">{{locale.categoryOneText}}</span><br>
+        <i class="glyph circle filled"></i><i class="glyph circle filled"></i><i class="glyph circle"></i>
+        {{locale.categoryTwoTitle}}: <span class="light">{{locale.categoryTwoText}}</span><br>
+        <i class="glyph circle filled"></i><i class="glyph circle filled"></i><i class="glyph circle filled"></i>
+        {{locale.categoryThreeTitle}}: <span class="light">{{locale.categoryThreeText}}</span>
+      </p>
+    </div>
+    <div>
+      <div class="input-text" data-step="1" [attr.data-intro]="locale.overlayIntroduction">
+        <div>
+          <input type="text" placeholder="{{locale.searchPlaceholder}}" [(ngModel)]="searchTerm" (input)="searchTermUpdate()" name="searchTerm" class="input-search" />
+          <input type="submit" value="" class="widget search">
+        </div>
+      </div>
+      <div class="input-select">
+        <select (change)="onCategoryChange($event)">
+            <option value="0">{{locale.categoryAll}}</option>
+            <option value="1">{{locale.categoryOneTitle}} ({{fallbackCount}})</option>
+            <option value="2" selected>{{locale.categoryTwoTitle}} ({{solidCount}})</option>
+            <option value="3">{{locale.categoryThreeTitle}} ({{ambitiousCount}})</option>
+        </select>
+          </div>
+      <div class="input-button" data-step="2" [attr.data-intro]="locale.overlayFilter">
+          <button [routerLink]="'/centigrade/courses/filter'" class="proceed">{{locale.adjustFiltersButtonText}}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section text-block applied-filters" data-step="6" [attr.data-intro]="locale.overlayCurrentFilter">
+    <ul class="cf">
+      <li *ngFor="let filter of filters">
+        <div class="filter">
+          {{filter.text}}
+          <a class="remove" (click)="removeFilter(filter.id, filter.optionId)">{{locale.removeFilterButtonText}}</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section columnar filter-results">
+    <div>
+        <h4>
+            {{locale.listHeading}}
+        </h4>
+    </div>
+    <div>
+        <div class="input-button order-container" data-step="7" [attr.data-intro]="locale.overlaySort" data-highlightClass="highlight-sort" data-tooltipClass="tooltip-sort">
+          <dropdown title="{{locale.orderByDropdownText}}: " [items]="sortOrderItems" (changed)="onSortChanged($event)"></dropdown>
+        </div>
+    </div>
+    <div class="section text-block applied-filters">
+        <ul class="cf">
+
+        </ul>
+    </div>
+  </div>
+
+  <div class="course-results cf">
+    <div class="course-result-items">
+      <div class="course-item" *ngFor="let course of filteredCourses | orderBy : 'orderRank'">
+
+        <div class="panel">
+          <div class="location" [style.background-image]="course.safeImage">
+            <div class="logo">
+              <img src="{{ course.logo }}" alt="{{ course.institutionName }}" />
+            </div>
+          </div>
+
+          <div class="course">
+            <div class="relevance-mark" title="Solid">
+              <i class="glyph circle" *ngFor="let i of createRange(course.ambition.outOf)" [class.filled]="course.ambition.value >= i"></i>
+            </div>
+            <div class="title">
+              <h4 class="dark two-line">
+                {{course.courseName}}
+              </h4>
+              <h4 class="two-line">
+                {{course.institutionName}}
+              </h4>
+            </div>
+            <p class="normal light one-line">
+              {{ course.location }}
+            </p>
+          </div>
+          <div class="data">
+            <ul class="normal">
+              <li class="card-list" *ngIf="course.details;else listBlank">
+              {{ course.details }}
+              </li>
+              <li class="card-list" *ngIf="course.rank;else listBlank">
+                #{{ course.rank }} <span class="light">in the UK</span>
+              </li>
+              <li class="card-list" *ngIf="course.studentSatisfaction;else listBlank">
+                <i class="glyph ss"></i>{{ course.studentSatisfaction | number:'2.0-0' }}% <span class="light">{{ locale.studentSatisfaction}}</span>
+              </li>
+              <li class="card-list" *ngIf="course.employability;else listBlank">
+                <i class="glyph er"></i>{{ course.employability | number:'2.0-0' }}% <span class="light">{{ locale.employabilityRate}}</span>
+              </li>
+            </ul>
+
+            <ng-template #listBlank>
+              <li class="card-list">&nbsp;</li>
+            </ng-template>
+
+
+          </div>
+          <div class="actions cf">
+            <app-tick-button [selected]="course.shortlisted" (click)="toggleShortlist(course)" [disableClick]="disableClick" data-step="8" [attr.data-intro]="locale.overlayShortlistCourse">Select course</app-tick-button>
+            <a [routerLink]="['/centigrade/courses/detail', {courseId: course.id}]" class="view" [class.viewed]="course.viewed" data-step="9" [attr.data-intro]="locale.overlayFindMore"><span *ngIf="course.viewed">Viewed</span><span *ngIf="!course.viewed">Not Viewed</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

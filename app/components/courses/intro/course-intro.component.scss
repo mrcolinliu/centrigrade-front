@@ -1,0 +1,43 @@
+@import "research-summary.scss";
+@import "courses.scss";
+
+.course-group {
+  margin-top: 50px;
+  border: 2px solid #58bfbf;
+  border-radius: 6px;
+
+  header {
+    background-color: #58bfbf;
+    padding: 20px;
+
+    h2 {
+      display: inline-block;
+      color: #fff;
+      font-size: 14pt;
+    }
+    .circles {
+      float: right;
+      .circle {
+        border-color: #fff;
+        &.filled {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+
+  .course-group-content {
+    padding: 20px;
+    min-height: 60px;
+
+    p.normal {
+      color: #999;
+    }
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .content-container {
+    padding-bottom: 40px;
+  }
+}

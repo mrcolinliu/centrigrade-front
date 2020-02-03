@@ -1,0 +1,48 @@
+@import 'course-detail.scss';
+
+.heading-logo {
+  img {
+    @media (min-width: 999px) {
+      max-height: 60px;
+    }
+  }
+}
+
+.interest {
+  .text {
+    cursor: pointer;
+  }
+}
+
+.push-down {
+  margin-top: 50px;
+}
+@media screen and (max-width: 999px) {
+  .container {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 0 72px;
+  }
+}
+
+.section-image {
+  min-height: 80px;
+}
+
+.input-button {
+  a.button {
+    display: inline-block;
+    text-align: center;
+    background-color: $color_river_bed_approx;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 3px;
+    border-style: none;
+    color: $white;
+    cursor: pointer;
+    font: 500 14px/20px $font_stack_sans;
+    line-height: 42px;
+    letter-spacing: 0.05em;
+    height: 42px;
+    width: 100%;
+  }
+}

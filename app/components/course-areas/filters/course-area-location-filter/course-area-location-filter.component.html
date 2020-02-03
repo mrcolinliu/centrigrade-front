@@ -1,0 +1,67 @@
+<div class="content-container">
+
+  <div class="cf">
+
+    <div class="section location-filter">
+      <h1 class="heading">{{locale.titleText}}</h1>
+      <p class="normal">
+        {{locale.subtitleText}}
+      </p>
+    </div>
+
+    <div class="section location-map">
+      <div class="input-text">
+        <input type="text" [(ngModel)]="filterText" placeholder="{{locale.searchPlaceholderText}}" (keyup)="search(filterText)">
+        <input type="submit" value="" class="widget search">
+      </div>
+    </div>
+
+    <div class="section location-filter-results">
+      <div class="study-location-list">
+        <ul class="region-list">
+          <ng-container *ngFor="let continent of locationCourseFilter.options">
+          <li *ngIf="continent.shown" class="region">
+            <div class="expando-btn" *ngIf="continent.options != null">
+              <a (click)="continent.expanded = !continent.expanded" [class.expanded]="continent.expanded" class="expando">Expand/Collapse</a>
+            </div>
+            <span *ngFor="let value of continent.values">{{value.value}}</span>
+            <app-tick-button [selected]="continent.selected" (click)="selectLocation(continent)">Select continent</app-tick-button>
+            <div class="region-countries">
+              <ul *ngIf="continent.expanded" class="country-list __expanded">
+               <ng-container *ngFor="let country of (continent.options)">
+                <li *ngIf="country.shown" class="country">
+                  <div class="expando-btn">
+                    <a (click)="country.expanded = !country.expanded" *ngIf="country.options" [class.expanded]="country.expanded" class="expando">Expand/Collapse</a>
+                  </div>
+                  <span *ngFor="let value of country.values">{{value.value}}</span>
+                  <app-tick-button [selected]="country.selected" (click)="selectLocation(country)">Select country</app-tick-button>
+                  <div class="region-countries">
+                    <ul *ngIf="country.options && country.expanded" class="country-list __expanded">
+                      <ng-container *ngFor="let region of country.options">
+                        <li *ngIf="region.shown" class="country">
+                            <span *ngFor="let value of region.values">{{value.value}}</span>
+                            <app-tick-button [selected]="region.selected" (click)="selectLocation(region)">Select region</app-tick-button>
+                        </li>
+                      </ng-container>
+                    </ul>
+                  </div>
+                </li>
+               </ng-container>
+              </ul>
+            </div>
+          </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="map-image">
+      <img src="assets/images/search-location-map.png" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="section lead-block center push-up">
+  <div class="input-button">
+    <button (click)="reset()">{{locale.removeFilterButtonText}}</button>
+  </div>
+</div>

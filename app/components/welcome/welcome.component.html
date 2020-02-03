@@ -1,0 +1,55 @@
+<div id="scrn">
+  <div id="scrn-c">
+    <div *ngIf="firstTime">
+      <div class="message-heading">
+        {{locale.firstTimeTitleText}}
+      </div>
+      <div class="message-text">
+        {{locale.firstTimeSubtitleText}}
+      </div>
+      <button class="form-control btn" (click)="goToMain()">
+        {{locale.startButtonText}}
+      </button>
+      <br><br>
+      <a class="cancel_link" href="#" (click)="logout()">{{locale.logoutButtonText}}</a>
+    </div>
+
+    <div *ngIf="!firstTime && questionsRemaining > 0">
+      <div class="message-heading">
+        {{locale.titleText}} {{this.currentUser.firstName}}!
+      </div>
+
+      <div *ngIf="questionsRemaining == 1">
+        <div class="message-text">
+          {{locale.remainingQuestionLabelText | stringFormat : [this.questionsRemaining]}}
+        </div>
+      </div>
+
+      <div *ngIf="questionsRemaining > 1">
+        <div class="message-text">
+          {{locale.remainingQuestionsLabelText | stringFormat : [this.questionsRemaining]}}
+        </div>
+      </div>
+
+      <button class="form-control btn" (click)="goToMain()">
+        {{locale.continueButtonText}}
+      </button>
+      <br><br>
+      <a class="cancel_link" href="#" (click)="logout()">{{locale.logoutButtonText}}</a>
+    </div>
+    <div *ngIf="!firstTime && questionsRemaining == 0">
+      <div class="message-heading">
+        {{locale.titleText}} {{this.currentUser.firstName}}!
+      </div>
+      <div class="message-text">
+        {{locale.subtitleText}}
+      </div>
+      <button class="form-control btn" (click)="goToResults()">
+        {{locale.resultsButtonText}}
+      </button>
+      <br><br>
+      <a class="cancel_link" href="#" (click)="logout()">{{locale.logoutButtonText}}</a>
+
+    </div>
+  </div>
+</div>

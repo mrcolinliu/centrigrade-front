@@ -1,0 +1,9 @@
+<div class="breadcrumb">
+  <a *ngIf="!disableBackButton" (click)="goBack()"></a>
+  <span *ngFor="let breadcrumb of breadcrumbs; let isLast=last">
+  <a *ngIf="!!breadcrumb.path" [routerLink]="breadcrumb.path">
+    {{breadcrumb.name}}
+  </a>
+  <span *ngIf="!breadcrumb.path">{{breadcrumb.name}}</span> {{isLast? '':'/'}}
+  </span>
+</div>

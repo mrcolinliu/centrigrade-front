@@ -1,0 +1,52 @@
+@import "search-filters-locations";
+.input-text input {
+  height: 100%;
+}
+
+.push-up {
+  padding-bottom: 100px;
+}
+
+.course {
+  position: relative;
+  margin: 1.2em 0;
+  padding-left: 30px;
+  display: inline-block;
+  width: 46%;
+  @media (max-width: 1200px) {
+    display: block;
+    width: auto;
+  }
+}
+
+@media (max-width: 1200px) {
+  .content-container {
+    padding-left: 20px;
+  }
+}
+
+.courses-filter-results {
+  margin-top: 0 !important;
+}
+
+h2.heading {
+  margin-top: 40px;
+}
+
+.filter-left,
+.filter-right {
+  display: inline-block;
+  width: 50%;
+  float: left;
+}
+
+app-tick-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.title {
+  cursor: pointer;
+  margin-right: 20px;
+}

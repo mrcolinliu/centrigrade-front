@@ -1,0 +1,96 @@
+<div class="content-container" *ngIf="!!details">
+
+  <div class="section full-bleed section-image" *ngIf="details.image">
+    <img [src]="details.image" alt="" />
+  </div>
+
+  <div class="section text-block section-heading">
+    <h1 class="heading" [style.background-image]="details.safeImage">
+      {{details.title}}
+      <button *ngIf="!details.selected" (click)="toggleSelected()" [disabled]="formSubmitted">{{locale.selectButtonText}}</button>
+      <button *ngIf="details.selected" (click)="toggleSelected()" class="selected" [disabled]="formSubmitted">{{locale.deselectButtonText}}</button>
+    </h1>
+    <p class="normal" [innerHtml]="details.introText | parseFormattedText">
+  </div>
+
+  <div class="section text-block course-details" data-step="2" [attr.data-intro]="locale.overlayMatch" data-scrollTo="tooltip">
+    <div>
+      <div>
+        <h4>
+          {{locale.interestHeaderText | stringFormat : [details.title]}}
+        </h4>
+        <div class="columnar">
+          <div>
+            <p class="normal light">{{locale.interestText | stringFormat : [details.interestDesc, details.title] }}</p>
+          </div>
+          <div>
+            <rating-bar [percentage]="details.interest"></rating-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="indent" *ngFor="let matchData of matchSection.data">
+      <div>
+        <h4 class="dark">
+          {{matchData.key}}
+        </h4>
+        <div class="columnar">
+          <div>
+            <p class="normal light __expanded">
+              {{matchData.description}}
+            </p>
+          </div>
+          <div>
+            <rating-bar [percentage]="matchData.value"></rating-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <h4>
+          Overall match
+        </h4>
+        <div class="columnar">
+          <div>
+            <p class="normal light">{{locale.overallMatchText | stringFormat : [details.matchDesc]}}</p>
+          </div>
+          <div>
+            <rating-bar [percentage]="details.match"></rating-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" data-step="3" [attr.data-intro]="locale.overlayGraduate" data-scrollTo="tooltip">
+    <div class="section columnar" *ngIf="chartSection">
+      <h3>{{chartSection.header}}</h3>
+      <div *ngIf="graphReady">
+        <doughnut-chart [datasets]="datasets" [labels]="doughnutChartLabels" [colors]="chartColors" [options]="options" (onChartHover)="chartHovered($event)"
+          (onChartClick)="chartClicked($event)">
+        </doughnut-chart>
+      </div>
+      <div>
+        <p class="normal">
+          {{chartSection.text}}
+        </p>
+      </div>
+    </div>
+
+    <div class="section columnar" *ngFor="let row of textSectionRows">
+      <div>
+        <h4>{{row.leftItem.header}}</h4>
+        <p class="normal light" [innerHtml]="row.leftItem.text | parseFormattedText"></p>
+      </div>
+      <div *ngIf="row.rightItem">
+        <h4>{{row.rightItem.header}}</h4>
+        <p class="normal light" [innerHtml]="row.rightItem.text | parseFormattedText"></p>
+      </div>
+      <div *ngIf="!row.rightItem">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+@import "general-message.scss";
+
+:host {
+  height: 100%;
+}
+
+.message-container {
+  height: 100%;
+  max-width: 800px;
+  color: white;
+  margin: 30px auto;
+  padding: 0 2em;
+}
+
+h2 {
+  font: 300 38px/1em museo, serif;
+  margin-top: 25px;
+}
+
+h4 {
+  font: 300 18px/26px museo-sans, sans-serif;
+  margin-top: 25px;
+}
+
+p {
+  font: 500 14px/22px museo-sans, sans-serif;
+  margin-top: 15px;
+}
+
+h2 + p {
+  margin-top: 25px;
+}
+
+ul {
+  list-style: disc;
+  padding-left: 20px;
+
+  li {
+    font: 500 16px/24px museo-sans, sans-serif;
+    margin-top: 5px;
+  }
+}
+
+.actions {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.privacy-ok {
+  padding-bottom: 1.5em;
+}

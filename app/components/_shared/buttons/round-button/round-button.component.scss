@@ -1,0 +1,76 @@
+$bg-1: white;
+$bg-hover-1: #cbcdce;
+$bg-active-1: #58bfbf;
+$border-1: #cbcdce;
+$border-hover-1: #cbcdce;
+$border-active-1: #58bfbf;
+$color-1: #454f5d;
+$color-hover-1: white;
+$color-active-1: white;
+$bg-2: #454f5d;
+$bg-hover-2: #b5b6b8;
+$bg-active-2: #b5b6b8;
+$border-2: #454f5d;
+$border-hover-2: #b5b6b8;
+$border-active-2: #b5b6b8;
+$color-2: white;
+$color-hover-2: white;
+$color-active-2: white;
+@mixin button($bg, $bg-hover, $bg-active, $border, $border-hover, $border-active, $color, $color-hover, $color-active) {
+  &.large-text {
+    .round-button {
+      font: 500 22px museo-sans, sans-serif;
+      line-height: 22px;
+    }
+  }
+  &.selected {
+    .round-button {
+      background-color: $bg-active;
+      border-color: $border-active;
+      color: $color-active;
+    }
+  }
+  .round-button {
+    background-color: $bg;
+    border: 1px solid $border;
+    border-radius: 35px;
+    color: $color;
+    cursor: pointer;
+    display: inline-block;
+    font: 500 12px museo-sans, sans-serif;
+    line-height: 12px;
+    height: 70px;
+    position: relative;
+    text-transform: uppercase;
+    width: 70px;
+    &:active {
+      background-color: $bg-active;
+      border-color: $border-active;
+      color: $color-active;
+    }
+    &:hover:not(:active):not(.active):not(.disable-hover) {
+      background-color: $bg-hover;
+      color: $color-hover;
+      border-color: $border-hover;
+    }
+    span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+:host {
+  width: 72px;
+  display: inline-block;
+  user-select: none;
+  &.primary {
+    @include button($bg-1, $bg-hover-1, $bg-active-1, $border-1, $border-hover-1, $border-active-1, $color-1, $color-hover-1, $color-active-1);
+  }
+  &.secondary {
+    @include button($bg-2, $bg-hover-2, $bg-active-2, $border-2, $border-hover-2, $border-active-2, $color-2, $color-hover-2, $color-active-2);
+  }
+}

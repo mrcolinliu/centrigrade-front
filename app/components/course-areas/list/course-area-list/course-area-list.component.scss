@@ -1,0 +1,30 @@
+@import "course-areas.scss";
+.title {
+  width: 20%;
+  float: left;
+}
+.course-results {
+  app-tick-button {
+    display: inline-block;
+    margin-right: 4px;
+  }
+}
+
+.course-title {
+  padding-left: 10px;
+}
+
+.alert {
+  font-size: 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 1em;
+  background: #dff0d8;
+  color: #3c763d;
+  margin-bottom: 1em;
+}
+
+.view {
+  position: relative;
+  top: -15px;
+}

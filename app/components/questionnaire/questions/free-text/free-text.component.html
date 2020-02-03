@@ -1,0 +1,12 @@
+<div class="centigrade-question question-type-input">
+  <h2 class="number" [innerHTML]="question.header | parseFormattedText"></h2>
+  <div class="question" [innerHTML]="question.question | parseFormattedText"></div>
+  <div class="answer" [attr.data-intro]="locale.overlayIntroduction" data-highlightClass="highlight-freetext">
+    <div *ngFor="let option of this.question.options">
+      <textarea [(ngModel)]="option.freeTextResponse" maxlength="{{responseLimit}}" [placeholder]="locale.placeholderText"></textarea>
+      <div class="characters-remaining">
+        {{locale.charactersRemainingText | stringFormat : [responseLimit - ((option.freeTextResponse) ? option.freeTextResponse.length:0)]}}
+      </div>
+    </div>
+  </div>
+</div>

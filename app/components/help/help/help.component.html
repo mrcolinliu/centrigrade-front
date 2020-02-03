@@ -1,0 +1,20 @@
+<div id="scrn" class="content-container">
+  <div class="message-container">
+    <h2>
+      {{locale.titleText}}
+    </h2>
+
+    <p *ngIf="!items">{{locale.helpText}}</p>
+
+    <ul *ngIf="!!items" class="faq">
+      <li *ngFor="let item of items">
+        <h3 [innerHtml]="item.question | parseFormattedText"></h3>
+        <p [innerHtml]="item.answer | parseFormattedText"></p>
+      </li>
+    </ul>
+
+    <div class="actions">
+      <button class="form-control btn margin-top" onclick="window.history.back()">{{locale.confirmButtonText}}</button>
+    </div>
+  </div>
+</div>

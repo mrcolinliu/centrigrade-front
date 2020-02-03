@@ -1,0 +1,85 @@
+@import "courses.scss";
+.course-results {
+  .course-result-items {
+    margin: 0 -20px;
+  }
+
+  .course-item {
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 40px;
+    padding: 0 20px;
+    width: 25%;
+  }
+
+  .actions {
+    padding: 0 15px 15px;
+    position: relative;
+
+    a.view {
+      color: $color_bombay_approx;
+      font: 500 12px/24px $font_stack_sans;
+      position: absolute;
+      right: 15px;
+      top: 0;
+
+      &.viewed {
+        color: $color_fountain_blue_approx;
+      }
+    }
+  }
+}
+
+.order-container {
+  position: relative;
+  top: -15px;
+}
+
+.input-search {
+  height: 42px;
+}
+
+.section + .section.applied-filters {
+  margin-top: 0;
+  padding-bottom: 15px;
+}
+
+.section + .section.filter-results {
+  margin-top: 10px;
+}
+
+.subtitle {
+  min-height: 22px;
+}
+
+@media screen and (min-width: 1280px) {
+  .course-results {
+    .course-item {
+      width: 20%;
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .course-results {
+    .course-item {
+      width: 25%;
+    }
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .course-results {
+    .course-item {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .course-results {
+    .course-item {
+      width: 100%;
+    }
+  }
+}

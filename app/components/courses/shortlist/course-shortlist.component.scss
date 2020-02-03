@@ -1,0 +1,143 @@
+@import 'shortlist.scss';
+.input-text input {
+  height: 100%;
+}
+
+.input-text form {
+  height: 100%;
+}
+
+.input-button + .input-button {
+  margin-top: 0;
+}
+
+.compare-button-container {
+  @media (max-width: 999px) {
+    display: none;
+  }
+}
+
+.compare {
+  position: relative;
+  app-tick-button {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+  }
+}
+
+.shortlist-items {
+  margin: 0 -20px;
+  padding-top: 20px;
+
+  .shortlist-item {
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 40px;
+    padding: 0 20px;
+  }
+
+  .remove-shortlist {
+    background: $white url('/assets/images/shortlist-close-button.png') no-repeat 50% 50%;
+    background-size: 12px;
+    border-radius: 13px;
+    border-style: none;
+    height: 24px;
+    left: 13px;
+    position: absolute;
+    text-indent: -8000px;
+    top: 13px;
+    width: 24px;
+  }
+
+  .actions {
+    border-top: 1px solid $color_celeste_approx;
+    padding: 0;
+    position: relative;
+
+    .text {
+      font: 500 12px/24px $font_stack_sans;
+      position: absolute;
+      right: 15px;
+      color: #b5b6b8;
+    }
+
+    .compare-button {
+      background-color: transparent;
+      border-style: none;
+      color: $color_bombay_approx;
+      cursor: pointer;
+      display: block;
+      height: 40px;
+      width: 100%;
+
+      &:hover,
+      &.selected {
+        background: $color_ocean_green_approx url('/assets/images/white-tick.png') no-repeat 20px
+          50%;
+        background-size: 14px;
+        color: $white;
+      }
+    }
+  }
+}
+
+.shortlist-item .course {
+  margin-bottom: 1em;
+}
+
+@media screen and (min-width: 1280px) {
+  .shortlist-items {
+    .shortlist-item {
+      width: 20%;
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .shortlist-items {
+    .shortlist-item {
+      width: 25%;
+    }
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .shortlist-items {
+    .shortlist-item {
+      width: 50%;
+    }
+  }
+
+  .hidden-mobile {
+    display: none;
+  }
+  .shortlist-item {
+    padding-bottom: 50px;
+  }
+  .shortlist-item .course {
+    max-width: none;
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .shortlist-items {
+    .shortlist-item {
+      width: 100%;
+    }
+  }
+}
+
+.courses > li,
+.universities > li {
+  //height: auto;
+}
+
+.shortlist img {
+  max-height: 50px;
+}
+
+p.normal a.link,
+p.normal a:visited.link {
+  margin-top: 10px;
+}

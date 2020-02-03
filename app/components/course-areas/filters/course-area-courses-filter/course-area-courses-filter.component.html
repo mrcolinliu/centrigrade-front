@@ -1,0 +1,28 @@
+<div class="content-container">
+
+  <div class="cf">
+
+    <div class="section courses-filter">
+      <div class="columnar">
+        <div>
+          <h1 class="heading">{{locale.titleText}}</h1>
+        </div>
+        <div>
+          <div class="input-button">
+            <button (click)="clear()">{{locale.clearFilterButtonText}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section courses-filter-results">
+      <div class="course-list" *ngFor="let area of courseCourseFilter.options">
+        <h2 class="heading">{{area.values[0].value}}</h2>
+        <div *ngFor="let course of area.options" class="course">
+          <app-tick-button [selected]="course.selected" (click)="selectCourse(course)">Select country</app-tick-button>
+          <p class="normal title" (click)="selectCourse(course)">{{course.values[0].value}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

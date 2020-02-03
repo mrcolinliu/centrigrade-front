@@ -1,0 +1,106 @@
+<div class="content-container">
+
+  <div class="section text-block">
+      <h1 class="heading">{{locale.titleText}}</h1>
+      <p class="normal" [innerHTML]="locale.subtitleText | parseFormattedText"></p>
+  </div>
+
+  <div class="section text-block" data-step="1" [attr.data-intro]="locale.overlayIntro" data-scrollTo="tooltip">
+    <div class="columnar tri-col mobile-hide">
+      <div>&nbsp;</div>
+      <div>
+        <p>
+          {{locale.interestLabelText}}<br>
+          <i>{{locale.interestLabelSubText}}</i>
+        </p>
+      </div>
+      <div>
+        <p>
+          {{locale.matchLabelText}}<br>
+          <i>{{locale.matchLabelSubText}}</i>
+        </p>
+      </div>
+    </div>
+
+    <div class="columnar tri-col" *ngFor="let courseArea of (courseAreas | courseAreaFilter: filterText: true)">
+      <div>
+        <p>
+          <app-tick-button (click)="toggleCourse(courseArea)" [disableClick]="disableClick" [selected]="courseArea.selected" data-step="3" [attr.data-intro]="locale.overlayTick">{{locale.selectCoursesButtonText}}</app-tick-button>
+          <a (click)="viewCourseArea(courseArea.id)" class="course-title" data-step="4" [attr.data-intro]="locale.overlayArrow">{{courseArea.title}} <i>({{locale.viewText}})</i></a>
+        </p>
+      </div>
+      <div>
+        <div class="rating" data-step="5" [attr.data-intro]="locale.overlayInterestLevel">
+          <i>{{locale.interestLabelText}}</i>
+          <div class="rating-bar">
+            <rating-bar [percentage]="courseArea.interest"></rating-bar>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="rating" data-step="6" [attr.data-intro]="locale.overlayOverallMatch">
+          <i>{{locale.matchLabelText}}</i>
+          <div class="rating-bar">
+            <rating-bar [percentage]="courseArea.match"></rating-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section text-block">
+    <p class="normal">
+        {{locale.note}}
+    </p>
+  </div>
+
+  <div class="section text-block">
+      <h3 class="heading">{{locale.otherCourseHeaderText}}</h3>
+      <p class="normal">
+          {{locale.otherCourseSubText}}
+      </p>
+  </div>
+
+  <div class="section text-block">
+    <div class="columnar tri-col mobile-hide">
+      <div>&nbsp;</div>
+      <div>
+        <p>
+          {{locale.interestLabelText}}<br>
+          <i>{{locale.interestLabelSubText}}</i>
+        </p>
+      </div>
+      <div>
+        <p>
+          {{locale.matchLabelText}}<br>
+          <i>{{locale.matchLabelSubText}}</i>
+        </p>
+      </div>
+    </div>
+
+    <div class="columnar tri-col" *ngFor="let courseArea of (courseAreas | courseAreaFilter: filterText: false)">
+      <div>
+        <p>
+          <app-tick-button (click)="toggleCourse(courseArea)" [selected]="courseArea.selected">{{locale.selectCoursesButtonText}}</app-tick-button>
+          <a (click)="viewCourseArea(courseArea.id)" class="course-title">{{courseArea.title}} <i>({{locale.viewText}})</i></a>
+        </p>
+      </div>
+      <div>
+        <div class="rating">
+          <i>{{locale.interestLabelText}}</i>
+          <div class="rating-bar">
+            <rating-bar [percentage]="courseArea.interest"></rating-bar>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="rating">
+          <i>{{locale.matchLabelText}}</i>
+          <div class="rating-bar">
+            <rating-bar [percentage]="courseArea.match"></rating-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

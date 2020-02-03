@@ -1,0 +1,44 @@
+<div id="scrn-table">
+    <div id="scrn-cell">
+        <div id="scrn-p">
+            <header id="scrn-h">
+                <div class="centigrade-logo">
+                    <img src="assets/images/centigrade-logo.png" alt="">
+                </div>
+                <div class="centigrade-strap">
+                    {{locale.subtitleText}}
+                </div>
+            </header>
+            <div class="sign-up-step">
+                <ol>
+                    <li>
+                        <span>Registration</span>
+                        <i>1</i>
+                    </li>
+                    <li>
+                        <span>Payment</span>
+                        <i>2</i>
+                    </li>
+                    <li class="current">
+                        <span>Questionnaire</span>
+                        <i>3</i>
+                    </li>
+                </ol>
+            </div>
+            <div id="scrn-c">
+                <div class="central-block">
+                    <p [innerHTML]="locale.mainText | parseFormattedText"></p>
+                    <div class="form-control">
+                        <button type="button" class="input-control button" (click)="goToStart()">
+                            {{locale.startButtonText}}
+                        </button>
+                        <br><br>
+                          <a class="cancel_link" href="#" (click)="logout()">
+                            {{locale.logoutButtonText}}
+                          </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

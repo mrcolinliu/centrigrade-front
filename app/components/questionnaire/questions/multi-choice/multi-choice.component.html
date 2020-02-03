@@ -1,0 +1,11 @@
+<div class="centigrade-question question-type-choice">
+  <h2 class="number" [innerHTML]="question.header | parseFormattedText"></h2>
+  <div class="question" [innerHTML]="question.question | parseFormattedText"></div>
+  <div class="answer" data-step="1" [attr.data-intro]="locale.overlayIntroduction">
+    <ul>
+      <li *ngFor="let option of question.options">
+        <app-round-button [ngClass]="{selected: option.selected}" (click)="toggleSelection(option)">{{option.title}}</app-round-button>
+      </li>
+    </ul>
+  </div>
+</div>

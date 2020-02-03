@@ -1,0 +1,45 @@
+<div class="centigrade-question question-type-select">
+  <h2 class="number" [innerHTML]="question.header | parseFormattedText"></h2>
+  <div class="question" [innerHTML]="question.question | parseFormattedText"></div>
+  <div class="answer">
+    <div class="selected-options hidden-desktop">
+      <ul>
+        <li *ngFor="let option of getSelectedOptions()" class="option">
+          {{ option.title }}
+          <a class="remove" (click)="unselectOption(option)">{{locale.removeButtonText}}</a>
+        </li>
+      </ul>
+    </div>
+    <span class="search-text">{{locale.searchText}}</span>
+    <div class="input-text" data-step="2" [attr.data-intro]="locale.overlayInputText" data-scrollTo="tooltip">
+      <input type="text" [(ngModel)]="filterText" placeholder="{{locale.searchPlaceholder}}">
+      <span class="widget search"></span>
+    </div>
+    <div class="input-selected">
+      {{locale.selectedCountText | stringFormat : [count]}}
+    </div>
+    <div class="selected-options hidden-mobile">
+      <ul>
+        <li *ngFor="let option of getSelectedOptions()" class="option">
+          {{ option.title }}
+          <a class="remove" (click)="unselectOption(option)">{{locale.removeButtonText}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="input-select" id="question-box" data-step="1"  [attr.data-intro]="locale.optionText" data-scrollTo="tooltip">
+      <ul>
+        <li *ngFor="let option of (question.options| options: filterText)">
+          <app-tick-button [selected]="option.selected" (click)="toggleSelection(option)">{{locale.selectButtonText}}</app-tick-button>
+          <a (click)="toggleSelection(option)">{{option.title}}</a>
+          <div class="input-select-options" *ngIf="option.children && option.children.length && option.selected" [attr.data-intro]="locale.multipleLevelText">
+            <ul class="grades">
+              <li *ngFor="let child of option.children">
+                <a  [class.selected]="child.selected" (click)="toggleChildSelection(child, option)">{{child.title}}</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

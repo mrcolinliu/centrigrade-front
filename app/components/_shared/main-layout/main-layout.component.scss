@@ -1,0 +1,529 @@
+/*
+*********************************************************
+* Warning this CSS is not encapsulated in the component *
+* so consider it global css, watch out for side effects *
+*********************************************************
+ */
+@import 'variables';
+
+#container {
+  height: 100%;
+}
+
+#fixed-header {
+  left: 0;
+  top: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.content-header {
+  border-bottom: 1px solid $color_celeste_approx;
+  position: relative;
+}
+
+.centigrade-logo {
+  a {
+    display: block;
+  }
+
+  img {
+    height: 48px;
+    vertical-align: middle;
+    width: 232px;
+  }
+}
+
+.side-menu {
+  position: absolute;
+
+  a {
+    background: url("/assets/images/navicon.png") no-repeat 50% 50%;
+    background-size: 24px 14px;
+    display: block;
+    height: 24px;
+    text-indent: -8000px;
+    width: 24px;
+  }
+}
+
+.help-link {
+  padding: 40px 40px 30px;
+
+  a {
+    border: 1px solid $color_celeste_approx;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 14px;
+    display: block;
+    height: 28px;
+    text-align: center;
+    width: 28px;
+
+    span {
+      color: $color_celeste_approx;
+      font: 700 14px/24px $font_stack_sans;
+      line-height: 28px;
+    }
+
+    &:hover {
+      background-color: $color_fountain_blue_approx;
+      border-color: $color_fountain_blue_approx;
+
+      span {
+        color: $white;
+      }
+    }
+  }
+}
+
+#fixed-aside {
+  .account-links {
+    background-color: $color_river_bed_approx;
+    bottom: 62px;
+    position: absolute;
+    left: 0;
+    padding-left: 40px;
+
+    a {
+      color: $white;
+      font: 500 15px/26px $font_stack_sans;
+
+      &:hover {
+        color: $color_fountain_blue_approx;
+      }
+    }
+  }
+}
+@media screen and(min-width: 1000px) {
+  //body {
+  //  background: linear-gradient(to right, $white 0, $white 50%, $color_river_bed_approx 50%, $color_river_bed_approx 100%) fixed;
+  //}
+  .wrapper {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1500px;
+    min-height: 100%;
+    padding-left: 80px;
+  }
+
+  .outer-container {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    float: left;
+    height: 100%;
+    margin-right: -250px;
+    width: 100%;
+  }
+
+  .inner-container {
+    background-color: $white;
+    min-height: 100%;
+    padding-right: 80px;
+  }
+
+  .content-header {
+    height: 100px;
+  }
+
+  .centigrade-logo {
+    float: left;
+    width: 240px;
+
+    a {
+      display: block;
+      line-height: 100px;
+    }
+
+    img {
+      height: 48px;
+      vertical-align: middle;
+      width: 232px;
+    }
+  }
+
+  #fixed-aside {
+    display: none;
+  }
+
+  .side-menu {
+    display: none;
+  }
+}
+@media screen and(max-width: 999px) {
+  .content-header {
+    background-color: $color_wild_sand_approx;
+    height: 62px;
+    position: relative;
+  }
+
+  .centigrade-logo {
+    margin: 0 auto;
+    padding-top: 12px;
+    width: 38px;
+
+    a {
+      background: url("/assets/images/centigrade-logo-mobile.png") no-repeat 50% 50%;
+      background-size: 38px;
+      display: block;
+      height: 38px;
+      width: 38px;
+
+      img {
+        display: none;
+      }
+    }
+  }
+
+  .side-menu {
+    right: 24px;
+    top: 19px;
+  }
+
+  #container {
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: left 0.2s ease-in-out;
+    left: 0;
+    position: relative;
+
+    &.menu-open {
+      left: -200px;
+    }
+  }
+
+  #fixed-header {
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: margin-left 0.2s ease-in-out;
+
+    &.menu-open {
+      margin-left: -200px;
+
+      .side-menu a {
+        background-image: url("/assets/images/menu-close.png");
+        background-size: 14px 14px;
+      }
+    }
+  }
+}
+@media screen and(max-width: 449px) {
+  .content-header {
+    height: 58px;
+  }
+
+  .centigrade-logo {
+    padding-top: 11px;
+    width: 36px;
+
+    a {
+      background-size: 36px;
+      height: 36px;
+      width: 36px;
+    }
+  }
+
+  .side-menu {
+    right: 22px;
+    top: 17px;
+  }
+}
+@media screen and(max-width: 349px) {
+  .content-header {
+    height: 50px;
+  }
+
+  .centigrade-logo {
+    padding-top: 10px;
+    width: 30px;
+
+    a {
+      background-size: 30px;
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  .side-menu {
+    right: 18px;
+    top: 13px;
+  }
+}
+
+#fixed-footer {
+  background: $color_fountain_blue_approx;
+  bottom: 0;
+  height: 62px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+
+  .inner-container {
+    background-color: $color_fountain_blue_approx;
+  }
+
+  .continue-bn {
+    color: $white;
+    font: 500 16px/1em $font_stack_sans;
+    line-height: 62px;
+
+    .bn {
+      float: right;
+      display: inline-block;
+
+      &:first-child {
+        padding-right: 10px;
+      }
+
+      &:last-child {
+        float: right;
+      }
+    }
+
+    a {
+      &.checkbox {
+        span {
+          background: url("/assets/images/tickbox-inactive.png") no-repeat 100% 50%;
+          background-size: 24px 24px;
+          display: inline-block;
+          text-indent: -8000px;
+          width: 24px;
+        }
+
+        &.active span {
+          background-image: url("/assets/images/tickbox-active.png");
+        }
+
+        &:hover span {
+          background-image: url("/assets/images/tickbox-active.png");
+        }
+      }
+
+      &.proceed span {
+        background: url("/assets/images/next-arrow.png") no-repeat 100% 50%;
+        background-size: 9px 15px;
+        display: inline-block;
+        text-indent: -8000px;
+        width: 32px;
+      }
+    }
+  }
+}
+@media screen and(min-width: 1000px) {
+  #fixed-footer {
+    //vendor-prefix found
+    //background: -webkit-linear-gradient(to right, #58bfbf 0%, #58bfbf 50%, #454f5d 50%, #454f5d 100%) fixed
+    //background: linear-gradient(to right, $color_fountain_blue_approx 0, $color_fountain_blue_approx 50%, $color_river_bed_approx 50%, $color_river_bed_approx 100%) fixed;
+  }
+}
+@media screen and(max-width: 999px) {
+  #fixed-footer {
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: margin-left 0.2s ease-in-out;
+
+    .wrapper {
+      padding: 0 24px;
+    }
+
+    &.menu-open {
+      margin-left: -200px;
+    }
+  }
+}
+@media screen and(max-width: 449px) {
+  #fixed-footer {
+    height: 58px;
+
+    .wrapper {
+      padding: 0 22px;
+    }
+
+    .continue-bn {
+      font-size: 15px;
+      line-height: 58px;
+    }
+  }
+}
+@media screen and(max-width: 349px) {
+  #fixed-footer {
+    height: 50px;
+
+    .wrapper {
+      padding: 0 18px;
+    }
+
+    .continue-bn {
+      font-size: 14px;
+      line-height: 50px;
+    }
+  }
+}
+
+#fixed-footer,
+#fixed-header {
+  z-index: 100;
+}
+
+#fixed-footer {
+  .inner-container {
+    cursor: pointer;
+    position: relative;
+  }
+
+  .continue-bn {
+    outline: none;
+  }
+
+  app-tick-button {
+    float: left;
+    margin-top: 18px;
+    margin-right: 10px;
+    z-index: 1;
+  }
+
+  app-tick-button + .inner-container {
+    padding-left: 36px;
+  }
+}
+
+#fixed-footer .continue-bn a.checkbox span {
+  background: url("/assets/images/tickbox-inactive.png") no-repeat 100% 50%;
+  background-size: 24px 24px;
+  display: inline-block;
+  text-indent: -8000px;
+  width: 24px;
+}
+
+#fixed-footer .continue-bn a.checkbox.active span,
+#fixed-footer .continue-bn a.checkbox:hover span {
+  background-image: url("/assets/images/tickbox-active.png");
+}
+@media print {
+  #fixed-footer,
+  #fixed-header {
+    display: none;
+  }
+
+  #container {
+    margin-top: 60px;
+
+    &:before {
+      content: url("/assets/images/centigrade-logo-desktop.png");
+      position: relative;
+      top: -40px;
+    }
+  }
+}
+
+#fixed-aside {
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  .aside {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    float: right;
+    min-height: 100%;
+    padding-right: 40px;
+    pointer-events: auto;
+    position: relative;
+    width: 250px;
+  }
+}
+@media screen and(min-width: 1000px) {
+  #fixed-aside .wrapper:after {
+    background-color: $color_river_bed_approx;
+    content: '';
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+  }
+}
+@media screen and(max-width: 999px) {
+  #fixed-aside {
+    display: none;
+    display: block;
+
+    .aside {
+      //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: width 0.2s ease-in-out;
+      background-color: $color_river_bed_approx;
+      min-height: 100%;
+      padding-right: 0;
+      width: 0;
+
+      &.menu-open {
+        width: 200px;
+      }
+
+      .help-link {
+        display: none;
+      }
+
+      .sectional-navigation {
+        padding: 40px 30px 0;
+
+        ul {
+          margin-left: 0;
+          width: 100%;
+        }
+
+        li {
+          padding-left: 0;
+        }
+      }
+
+      .account-links {
+        padding-left: 30px;
+      }
+
+      .current {
+        background-image: none;
+      }
+    }
+
+    .wrapper {
+      height: 100%;
+    }
+  }
+}
+@media screen and(max-width: 449px) {
+  #fixed-aside .aside {
+    .sectional-navigation {
+      padding-top: 0;
+    }
+
+    .account-links {
+      bottom: 20px;
+    }
+  }
+}
+@media screen and(max-width: 349px) {
+  #fixed-aside .aside {
+    .sectional-navigation {
+      padding-top: 0;
+    }
+
+    .account-links {
+      bottom: 10px;
+    }
+  }
+}
+// PT changes ?
+
+#fixed-aside {
+  z-index: 101;
+  @media print {
+    display: none;
+  }
+
+  &.menu-open {
+    pointer-events: auto;
+    z-index: 100;
+  }
+}

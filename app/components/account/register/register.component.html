@@ -1,0 +1,159 @@
+<div id="scrn-table">
+    <div id="scrn-cell">
+        <div id="scrn-p">
+            <header id="scrn-h">
+                <div class="centigrade-logo">
+                    <img src="assets/images/centigrade-logo.png" alt="">
+                </div>
+                <div class="centigrade-strap">
+                    {{locale.introText}}
+                </div>
+            </header>
+            <div class="sign-up-step">
+                <ol>
+                    <li class="current">
+                        <span>Registration</span>
+                        <i>1</i>
+                    </li>
+                    <li>
+                        <span>Payment</span>
+                        <i>2</i>
+                    </li>
+                    <li>
+                        <span>Questionnaire</span>
+                        <i>3</i>
+                    </li>
+            </ol></div>
+            <form id="scrn-c" [formGroup]="registerForm" novalidate="novalidate" (ngSubmit)="register(registerForm.value)">
+                <div class="columns">
+                    <div class="column">
+                        <div class="form-control">
+                            <label for="firstName">{{locale.firstNamePlaceholder}}</label>
+                            <input type="text" class="input-control" [formControl]="registerForm.controls['firstName']">
+                            <div class="validation-error" *ngIf="(registerFormSubmitted || registerForm.controls['firstName'].dirty) && !registerForm.controls['firstName'].valid">
+                              <div class="form-hint">
+                                <div>{{locale.firstNameValidationText}}</div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <label for="lastName">{{locale.lastNamePlaceholder}}</label>
+                            <input type="text" class="input-control" [formControl]="registerForm.controls['secondName']">
+                            <div class="validation-error" *ngIf="(registerFormSubmitted || registerForm.controls['secondName'].dirty) && !registerForm.controls['secondName'].valid">
+                              <div class="form-hint">
+                                <div>{{locale.lastNameValidationText}}</div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <label for="email">{{locale.emailPlaceholder}}</label>
+                            <input type="email" class="input-control" [formControl]="registerForm.controls['email']">
+                            <div class="validation-error" *ngIf="(registerFormSubmitted || registerForm.controls['email'].touched) && !registerForm.controls['email'].valid">
+                              <div class="form-hint">
+                                <div>{{locale.emailValidationText}}</div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <label for="email">{{locale.emailAgainPlaceholder}}</label>
+                            <input type="email" class="input-control" [formControl]="registerForm.controls['emailAgain']" onpaste="return false;">
+                            <div class="validation-error" *ngIf="(registerFormSubmitted || registerForm.controls['emailAgain'].touched) && registerForm.controls['email'].value !== registerForm.controls['emailAgain'].value">
+                              <div class="form-hint">
+                                <div>{{locale.emailAgainValidationText}}</div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <label for="password">{{locale.passwordPlaceholder}}</label>
+                            <input type="{{passwordType}}" class="input-control show-pad" [formControl]="registerForm.controls['password']">
+                            <div class="validation-error" *ngIf="(registerFormSubmitted || registerForm.controls['password'].dirty) && !registerForm.controls['password'].valid">
+                              <div class="form-hint">
+                                <div>{{locale.passwordValidationText | stringFormat : [this.passwordLength]}}</div>
+                              </div>
+                            </div>
+                            <span><a (click)="togglePassword()">{{showPassword ? locale.hidePasswordText : locale.showPasswordText}}</a></span>
+                        </div>
+                        <span>{{locale.passwordText | stringFormat : [this.passwordLength]}}</span>
+                    </div>
+                    <div class="column">
+                        <div class="form-control">
+                           <label for="gender">{{locale.genderPlaceholder}}</label>
+                            <select class="input-control select-control" [formControl]="registerForm.controls['gender']">
+                                <option disabled value="null">{{locale.genderPlaceholder}}</option>
+                                 <option disabled>{{locale.comboSeparator}}</option>
+                                <option *ngFor="let item of genders | orderBy : 'order' " [value]="item.id">{{item.gender}}</option>
+                            </select>
+                            <span class="caret"></span>
+                            <div class="validation-error" *ngIf="(registerFormSubmitted || registerForm.controls['gender'].dirty) && !registerForm.controls['gender'].valid">
+                                <div class="form-hint">
+                                    <div>{{locale.genderValidationText}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <label for="school">{{locale.schoolPlaceholder}}</label>
+                            <input type="text" class="input-control" [formControl]="registerForm.controls['school']">
+                        </div>
+
+                        <div class="form-control">
+                            <label for="school">{{locale.countryPlaceholder}}</label>
+
+                            <select class="input-control select-control" [formControl]="registerForm.controls['country']">
+                                <option disabled value="null">{{locale.countryPlaceholder}}</option>
+                                <option disabled>{{locale.comboSeparator}}</option>
+
+                                <ng-container *ngFor="let country of countries; index as i; ">
+                                    <ng-container *ngIf="i">
+                                        <ng-container *ngIf="countries[i-1].priority != countries[i].priority">
+                                            <option disabled>{{locale.comboSeparator}}</option>
+                                        </ng-container>
+                                    </ng-container>
+
+                                    <option [value]="country.countryId">{{country.countryName}}</option>
+
+                                </ng-container>
+
+
+                            </select>
+
+
+
+                            <span class="caret"></span>
+                            <div class="validation-error" *ngIf="(registerFormSubmitted || registerForm.controls['country'].dirty) && !registerForm.controls['country'].valid">
+                                <div class="form-hint">
+                                    <div>{{locale.countryValidationText}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <div class="input-control check-control" [class.checked]="registerForm.controls['emailPreference'].value">
+                                <input type="checkbox" [formControl]="registerForm.controls['emailPreference']">
+                            </div>
+                            <p>{{locale.contactInputText}}</p>
+                        </div>
+                        <div class="form-control">
+                            <div class="input-control check-control" [class.checked]="registerForm.controls['terms'].value">
+                                <input type="checkbox" [formControl]="registerForm.controls['terms']">
+                            </div>
+                            <p>{{locale.disclaimerInputText}} <a routerLink="/privacy">{{locale.disclaimerLinkText}}</a></p>
+                            <br>
+                            <div class="validation-error" *ngIf="(registerFormSubmitted || registerForm.controls['terms'].dirty) && !registerForm.controls['terms'].valid">
+                              <div class="form-hint">
+                                <div>{{locale.disclaimerValidationText}}</div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <button type="submit" class="input-control button" [disabled]="formSubmitted">{{locale.registerButtonText}}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <footer id="scrn-f">
+                <div class="sign-up">
+                  {{locale.loginText}} <a routerLink="/login">{{locale.loginLinkText}}</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+
+<span *ngIf="value == undefined && size != 'small'" class="star-unrated">&nbsp; unrated</span>
+<ul *ngIf="!(mode == 'static' && value == undefined)" [class.highlight]="highlight" [class.small]="size == 'small'">
+  <li [class.empty-star]="value < 1" [class.half-star]="value >= 0.5 && value < 1" [class.full-star]="value >= 1" (click)="onStarClick(1)"></li><li [class.empty-star]="value < 2" [class.half-star]="value >= 1.5 && value < 2" [class.full-star]="value >= 2" (click)="onStarClick(2)"></li><li [class.empty-star]="value < 3" [class.half-star]="value >= 2.5 && value < 3" [class.full-star]="value >= 3" (click)="onStarClick(3)"></li><li [class.empty-star]="value < 4" [class.half-star]="value >= 3.5 && value < 4" [class.full-star]="value >= 4" (click)="onStarClick(4)"></li><li [class.empty-star]="value < 5" [class.half-star]="value >= 4.5 && value < 5" [class.full-star]="value >= 5" (click)="onStarClick(5)"></li>
+</ul>

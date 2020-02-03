@@ -1,0 +1,29 @@
+<app-vertical-progress-indicator [max]="maxIndex" [value]="question.questionNumber"></app-vertical-progress-indicator>
+
+<div class="content-container">
+  <div class="question-navigation previous" *ngIf="questionIndex > 0">
+    <a (click)="previousQuestion()">{{locale.returnToPrevious}}</a>
+  </div>
+
+  <div class="question-container">
+    <question-multi-choice *ngIf="question.type == 'QTYPE_SINGLE'" [active]="question.type == 'QTYPE_SINGLE'" [question]="question"
+      [question-changed]="onQuestionChange" [question-submitted]="onQuestionSubmit" [questionIndex]="questionIndex" (submit)="onAnswersSubmitted($event)"></question-multi-choice>
+
+    <question-free-text *ngIf="question.type == 'QTYPE_FREE_TEXT'" [active]="question.type == 'QTYPE_FREE_TEXT'" [question]="question"
+      [question-changed]="onQuestionChange" [questionIndex]="questionIndex" (submit)="onAnswersSubmitted($event)"></question-free-text>
+
+    <question-multi-select *ngIf="question.type == 'QTYPE_MULTI' || question.type == 'QTYPE_LIST'" [active]="question.type == 'QTYPE_MULTI' || question.type == 'QTYPE_LIST'" [question]="question"
+      [question-changed]="onQuestionChange" [questionIndex]="questionIndex" (submit)="onAnswersSubmitted($event)"></question-multi-select>
+
+    <question-statement *ngIf="question.type == 'QTYPE_STATEMENT'" [active]="question.type == 'QTYPE_STATEMENT'" [question]="question"
+      [question-changed]="onQuestionChange" [questionIndex]="questionIndex" (submit)="onAnswersSubmitted($event)"></question-statement>
+
+    <app-round-button class="next-button" *ngIf="questionIndex < maxIndex && question.type != 'QTYPE_SINGLE' && !submitingQuestion" (click)="nextQuestion()">{{locale.nextButtonText}}</app-round-button>
+
+    <app-round-button class="next-button" *ngIf="questionIndex == maxIndex && question.type != 'QTYPE_SINGLE' && !submitingQuestion" (click)="nextQuestion()">{{locale.finishButtonText}}</app-round-button>
+  </div>
+
+  <div class="question-navigation next">
+    <a (click)="nextQuestion()" class="disabled" [class.enabled]="questionIndex <= maxIndex && question.answered && !submitingQuestion && (questionIndex < lastAnswered || isAnswered(question))">Proceed to next question</a>
+  </div>
+</div>

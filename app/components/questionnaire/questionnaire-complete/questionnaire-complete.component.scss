@@ -1,0 +1,34 @@
+@import 'base2.scss';
+
+.input-button button.light {
+  background-color: #efefef;
+  color: #454f5d;
+}
+
+.input-button button.light:hover {
+  background-color: #454f5d;
+  color: white;
+}
+
+.input-button button.light:hover {
+  background-color: #454f5d;
+  color: white;
+}
+
+.input-button button.light.checked {
+  background-color: #58bfbf;
+  color: white;
+}
+/*
+    ----------------------------------
+    Styles for SUBJECT layout use only
+    ----------------------------------
+*/
+.input-button {
+  margin-top: 30px;
+}
+/*
+    ---------------------------------------------
+    Responsive styles for SUBJECT page content only
+    ---------------------------------------------
+*/

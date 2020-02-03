@@ -1,0 +1,42 @@
+<div class="content-container">
+
+  <div class="section text-block" data-step="1" [attr.data-intro]="locale.overlayIntroduction">
+    <h1 class="heading">{{title}}</h1>
+    <p class="normal" [innerHtml]="subtitle | parseFormattedText">
+
+    </p>
+  </div>
+
+  <div class="section list search-filters">
+    <div *ngFor="let filter of filters; let i = index">
+      <div [attr.data-step]="i + 2" [attr.data-intro]="filter.title">
+        <div *ngIf="filter.tag == 'FTYPE_JOINT_COURSES'">
+          <h4 (click)="updateJointCourses()">{{jointCourseFilter.title}}</h4>
+          <div [class.checked]="showJointCourse" class="toggle-btn">
+            <a (click)="updateJointCourses()"></a>
+          </div>
+        </div>
+        <div *ngIf="filter.tag != 'FTYPE_JOINT_COURSES'">
+          <div *ngIf="filter.completed">
+            <h4 (click)="goToFilter(filter.tag)">{{filter.title}} <span class="nb" *ngIf="filter.isRequired">(Required)</span></h4>
+            <p class="normal light">
+              {{filter.text}} <a (click)="goToFilter(filter.tag)" class="dark">{{locale.editButtonText}}</a>
+            </p>
+            <div class="view __completed">
+              <a (click)="goToFilter(filter.tag)"></a>
+            </div>
+          </div>
+          <div *ngIf="!filter.completed">
+            <h4 (click)="goToFilter(filter.tag)">{{filter.title}} <span class="nb em" *ngIf="filter.isRequired" [class.red]="incomplete && !filter.completed">(Required)</span></h4>
+            <p class="normal light">
+              &nbsp;
+            </p>
+            <div class="view">
+              <a (click)="goToFilter(filter.tag)"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

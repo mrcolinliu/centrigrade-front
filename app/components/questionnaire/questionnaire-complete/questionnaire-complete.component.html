@@ -1,0 +1,30 @@
+<div class="content-container">
+    <div class="section lead-block center" *ngIf="!paused">
+        <img src="../../../../assets/images/flags-solid.png">
+        <br><br>
+        <br><br>
+        <h1 class="heading">{{locale.titleText}}</h1>
+        <p class="normal">
+            {{locale.firstLineText}}<br /><br /> {{locale.secondLineText}}
+        </p>
+        <div class="input-button" (click)="seeMyResults()">
+            <button class="light checked">
+                {{locale.resultsButtonText}}
+                <img class="icon" src="assets/images/next-arrow.png" alt="">
+            </button>
+        </div>
+    </div>
+    <div class="section lead-block center" *ngIf="paused">
+        <img src="../../../../assets/images/flags-solid.png">
+        <br><br>
+        <h1 class="heading">{{locale.pausedTitleText}}</h1>
+        <p class="normal">
+            {{locale.pausedFirstLineText}}<br /><br /> {{locale.pausedSecondLineText}}
+        </p>
+        <div class="input-button">
+            <button class="checked" (click)="reload()">
+                {{locale.pausedResultsButtonText}}
+            </button>
+        </div>
+    </div>
+</div>

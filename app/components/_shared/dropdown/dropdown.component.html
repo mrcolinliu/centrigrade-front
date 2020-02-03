@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <div class="container" [class.visible]="isOpen">
+    <a class="title" (click)="toggleState()">{{title}} {{label}}</a>
+    <ul class="list" *ngIf="isOpen">
+      <li class="item" *ngFor="let item of items" (click)="select(item)">
+        <a>{{item.label}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+@import 'register.scss';
+
+.form-header {
+  color: white;
+  font: 500 15px/22px museo-sans, sans-serif;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+#scrn-p {
+  max-width: 400px;
+}
+
+.alert {
+  font-size: 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 1em;
+  background: #dff0d8;
+  color: #3c763d;
+  margin-bottom: 1em;
+  line-height: 16px;
+}

@@ -1,0 +1,61 @@
+@import "research.scss";
+
+p.normal.light a {
+  color: #6c6e6f;
+}
+
+p,
+a {
+  display: block;
+  margin-bottom: 2em;
+  font-size: 12pt !important;
+}
+
+h4 {
+  font-size: 12pt !important;
+}
+
+h1.heading {
+  color: #58bfbf;
+  margin-bottom: 40px;
+}
+
+.top-course-areas {
+  font-size: 12pt;
+  color: #475061;
+}
+
+.ball {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: #58bfbf;
+  color: #fff;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  font-style: normal;
+  font-size: 14pt;
+  margin: 6px;
+  margin-left: 0;
+}
+
+.top-course-areas .ball {
+  margin-right: 10px;
+}
+
+.content-container {
+  padding-bottom: 0;
+
+  @media screen and (max-width: 1999px) and (min-width: 1000px) {
+    padding-top: 152px;
+  }
+}
+
+.course-area-title {
+  display: inline-block;
+  padding-top: 1em;
+  vertical-align: top;
+  line-height: 1.2em;
+  width: calc(100% - 55px);
+}

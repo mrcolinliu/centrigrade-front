@@ -1,0 +1,37 @@
+<div id="scrn-table">
+  <div id="scrn-cell">
+    <div id="scrn-p">
+      <header id="scrn-h">
+        <div class="centigrade-logo">
+          <a routerLink="/login">
+            <img src="assets/images/centigrade-logo.png" alt="" />
+          </a>
+        </div>
+        <div class="centigrade-strap">
+          {{locale.introText}}
+        </div>
+      </header>
+      <form id="scrn-c" [formGroup]="resendActivationForm" (ngSubmit)="resendActivation(resendActivationForm.value)" novalidate="novalidate">
+        <div class="form-header">
+            {{locale.subtitleText}}
+          </div>
+        <div class="form-control">
+          <input type="email" class="input-control" placeholder="Email address" [formControl]="resendActivationForm.controls['email']">
+          <div class="validation-error" *ngIf="(forgottenPasswordSubmitted || resendActivationForm.controls['email'].dirty) && !resendActivationForm.controls['email'].valid">
+            <div class="form-hint">
+              <div>{{locale.emailValidationText}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control">
+          <button type="submit" class="input-control button" [disabled]="formSubmitted">{{locale.continueButtonText}}</button>
+        </div>
+      </form>
+      <footer id="scrn-f">
+        <div class="sign-up">
+          {{locale.loginText}} <a routerLink="/login">{{locale.loginLinkText}}</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

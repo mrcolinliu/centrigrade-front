@@ -1,0 +1,131 @@
+<div class="content-container">
+  <div class="section text-block">
+    <div>
+      <h1 class="heading">
+        {{locale.titleText}}
+      </h1>
+    </div>
+  </div>
+
+  <div class="section compare cf">
+    <div class="compare-items">
+
+      <div class="compare-item" *ngFor="let column of columnsToShow">
+
+         <div class="input-select">
+          <select (change)="selectComparison($event.target.value, column)">
+            <optgroup *ngFor="let course of courses; index as indexTwo" label="{{ course.institution}}">
+              <option *ngIf="course.courseId == pulldownSelected[column].selected" value="{{ course.courseId }}" selected>{{ course.title}}</option>
+              <option *ngIf="course.courseId != pulldownSelected[column].selected" value="{{ course.courseId }}">{{ course.title}}</option>
+            </optgroup>
+          </select>
+
+        </div>
+
+        <ng-container *ngFor="let course of courses;">
+        <div *ngIf="course.courseId == pulldownSelected[column].selected" class="panel">
+
+          <!-- This implementation only works with safeImage [style.background-image]="course.safeImage" -->
+          <div class="location" [style.background-image]="course.safeImage">
+              <div class="logo">
+                  <img src="{{ course.logo }}" alt="{{ course.institution }}">
+              </div>
+              <button class="remove-shortlist">
+                  Close
+              </button>
+          </div>
+          <div class="course">
+              <div title="Solid" class="relevance-mark">
+                  <i class="glyph circle filled"></i><i class="glyph circle filled"></i><i class="glyph circle"></i>
+              </div>
+              <!-- Add NG Relevance mark here and remove the static relevance mark code from above -->
+              <!-- <div class="relevance-mark" title="Solid">
+                  <i class="glyph circle" *ngFor="let i of createRange(course.ambition.outOf)" [class.filled]="course.ambition.value >= i"></i>
+              </div> -->
+              <div class="title">
+                  <h4 class="dark two-line">
+                      {{course.title}}
+                  </h4>
+                  <h4 class="two-line">
+                      {{ course.institution }}
+                  </h4>
+              </div>
+              <p class="normal light one-line">
+                 {{ course.location }}
+              </p>
+          </div>
+          <div class="data">
+
+              <ul class="normal">
+                  <li class="card-list" *ngIf="course.details;else listBlank">
+                      {{ course.details }}
+                  </li>
+                  <li class="card-list" *ngIf="course.rank;else listBlank">
+                      #{{ course.rank }} <span class="light">in the UK</span>
+                  </li>
+                  <li class="card-list" *ngIf="course.studentSatisfaction;else listBlank">
+                      <i class="glyph ss"></i>{{ course.studentSatisfaction | number:'2.0-0' }}% <span class="light">{{ locale.studentSatisfaction}}</span>
+                  </li>
+                  <li class="card-list" *ngIf="course.employability;else listBlank">
+                      <i class="glyph er"></i>{{ course.employability | number:'2.0-0' }}% <span class="light">{{ locale.employabilityRate}}</span>
+                  </li>
+              </ul>
+
+              <ng-template #listBlank>
+                <li class="card-list">&nbsp;</li>
+              </ng-template>
+
+              <!-- The height of this area will vary -->
+              <div class="research">
+                <h4>{{ locale.myResearch}}</h4>
+
+                <ng-container *ngFor="let research of course.researchAreas; index as i">
+                  <div class="rating">
+                      <p>
+                        {{ research.areaHeader }}
+                      </p>
+                      <star-rating [value]="research.userRating"></star-rating>
+                  </div>
+                </ng-container>
+
+              </div>
+
+              <!-- The height of this area will vary -->
+              <div class="other-information">
+                  <h4>{{ locale.otherCourseInformation }}</h4>
+                <ng-container *ngFor="let information of course.information; index as i">
+
+                  <p class="normal">
+                    {{ information.header }}<br />
+
+                    <span style="border: 1px solid red;" *ngIf="information.header=='Entry Requirements'; else oneLine" class="light three-line">{{ information.text }}</span>
+
+                    <ng-template #oneLine>
+                    <span class="light one-line">{{ information.text }}</span>
+                    </ng-template>
+
+                  </p>
+
+                </ng-container>
+                <!-- Control height card we need to have all information DATA passed
+              <span class="light three-line">CL {{ course.information[0].text }}</span>
+              <span class="light three-line">CL {{ course.information[0].text }}</span> -->
+
+
+              </div>
+
+
+
+
+
+
+
+
+          </div>
+        </div><!--  Panel END -->
+      </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>

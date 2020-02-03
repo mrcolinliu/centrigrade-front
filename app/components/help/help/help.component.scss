@@ -1,0 +1,51 @@
+@import "general-message.scss";
+
+.content-container {
+  max-width: 600px;
+
+  @media screen and (min-width: 1000px) {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+}
+
+.message-container {
+  max-width: 800px;
+  color: white;
+  margin: 30px auto;
+}
+
+h2 {
+  font: 300 38px/1em museo, serif;
+  margin-top: 25px;
+}
+
+h3 {
+  font: 300 22px/26px museo-sans, sans-serif;
+  margin-top: 25px;
+}
+
+p {
+  font: 500 14px/22px museo-sans, sans-serif;
+  margin-bottom: 1em;
+}
+
+h2 + p {
+  margin-top: 25px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    font: 500 16px/24px museo-sans, sans-serif;
+    margin-top: 5px;
+  }
+}
+
+.actions {
+  max-width: 400px;
+  margin: 0 auto;
+}

@@ -1,0 +1,18 @@
+<div class="content-container">
+  <div class="section text-block">
+    <h1 class="heading">{{locale.title}}</h1>
+  </div>
+  <div class="section columnar">
+    <div>
+      <ul class="top-course-areas">
+          <li *ngFor="let item of courseAreas"><i class="ball">{{item.ordinal}}</i> <span class="course-area-title">{{item.title}}</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="normal">{{locale.paragraphOne | stringFormat : [name]}}</p>
+      <a (click)="navigateToAreas()"><h4>{{locale.linkOne}}</h4></a>
+      <p class="normal">{{ paragraphTwo }}</p>
+      <a (click)="navigateToAreas()"><h4>{{locale.linkTwo}}</h4></a>
+    </div>
+  </div>
+</div>

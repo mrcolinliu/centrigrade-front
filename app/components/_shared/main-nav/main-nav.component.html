@@ -1,0 +1,18 @@
+<div class="sectional-navigation">
+  <ul>
+    <li routerLinkActive="current"><a routerLink="/centigrade/questions" [class.disabled]="questionnaireComplete">{{locale.questionsItemText}}</a></li>
+    <li routerLinkActive="current"><a routerLink="/centigrade/course-areas" [class.disabled]="!questionnaireComplete">{{locale.courseAreasItemText}}</a></li>
+    <li routerLinkActive="current"><a routerLink="/centigrade/course-area-filters" [class.disabled]="!courseAreasComplete">{{locale.filtersItemText}}</a></li>
+    <li routerLinkActive="current"><a routerLink="/centigrade/courses" [class.disabled]="!preferencesComplete">{{locale.coursesItemText}}</a></li>
+    <li routerLinkActive="current"><a routerLink="/centigrade/research/summary" [class.disabled]="!coursesComplete">{{locale.researchItemText}}</a></li>
+    <li routerLinkActive="current"><a routerLink="/centigrade/shortlist" [class.disabled]="!coursesComplete">{{locale.shortlistItemText}}</a></li>
+    <li routerLinkActive="current"><a routerLink="/centigrade/finalise" [class.disabled]="!coursesComplete">{{locale.finaliseItemText}}</a></li>
+  </ul>
+</div>
+<div class="account-links">
+  <ul>
+    <li><a class="help" routerLink="/help">{{locale.helpLinkText}}</a></li>
+    <li><a class="settings" routerLink="/account/settings">{{locale.settingsLinkText}}</a></li>
+    <li><a class="logout" (click)="signOut()">{{locale.signoutLinkText}}</a></li>
+  </ul>
+</div>

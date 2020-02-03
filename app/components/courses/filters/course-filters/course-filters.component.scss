@@ -1,0 +1,16 @@
+@import 'course-filters.scss';
+
+.filter-group {
+  app-tick-button {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    display: block;
+  }
+}
+
+.heading span {
+  color: #454f5d;
+  display: block;
+  font: 500 15px/22px museo-sans, sans-serif;
+}

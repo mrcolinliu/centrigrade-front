@@ -1,0 +1,8 @@
+@import 'account-settings.scss';
+// styles.css being overwritten so adding specific styles
+.alert-bottom,
+.message-error {
+  padding: 1em;
+  margin-bottom: 1em;
+  margin-top: 22px;
+}

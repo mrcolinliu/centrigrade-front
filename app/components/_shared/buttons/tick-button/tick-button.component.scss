@@ -1,0 +1,24 @@
+@mixin tick-button($inactiveImage, $activeImage) {
+  background: url($inactiveImage) no-repeat 50% 50%;
+  background-size: 24px;
+  display: block;
+  float: left;
+  height: 24px;
+  text-indent: -8000px;
+  width: 24px;
+  &.selected,
+  &:hover:not(.disable-hover) {
+    background-image: url($activeImage);
+  }
+}
+
+.tick-button {
+  @include tick-button(
+    '/assets/images/grey-tick-circled.png',
+    '/assets/images/green-tick-circled.png'
+  );
+}
+
+.tick-button.clear {
+  @include tick-button('/assets/images/tickbox-inactive.png', '/assets/images/tickbox-active.png');
+}

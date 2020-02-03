@@ -1,0 +1,50 @@
+<div class="content-container">
+
+  <div class="section columnar">
+    <div>
+      <h1 class="heading">
+        {{locale.titleText}}
+      </h1>
+      <p class="normal">
+        {{locale.subtitleText}}
+      </p>
+    </div>
+    <div>
+      <div class="input-text">
+        <input type="text" [(ngModel)]="filterText" placeholder="{{locale.searchPlaceholderText}}" />
+        <input type="submit" value="" class="widget search">
+      </div>
+      <div class="input-text-result">
+        {{locale.searchLabelText | stringFormat : [getCount()]}}
+      </div>
+    </div>
+  </div>
+
+  <div class="section columnar">
+    <div>
+      <h3>
+        {{locale.popularHeaderText}}
+      </h3>
+      <ul class="languages">
+        
+      </ul>
+    </div>
+    <div>
+      <h3>
+        {{locale.allLanguagesHeaderText}}
+      </h3>
+      <ul class="languages">
+        <li *ngFor="let language of (languageCourseFilter.options | valuesFilter: filterText)">
+          <span *ngFor="let value of language.values">{{value.value}}</span>
+          <app-tick-button (click)="language.selected = !language.selected" [selected]="language.selected"></app-tick-button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section lead-block center">
+  <div class="input-button">
+    <button (click)="reset()">{{locale.removeFilterButtonText}}</button>
+  </div>
+</div>

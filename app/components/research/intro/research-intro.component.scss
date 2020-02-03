@@ -1,0 +1,56 @@
+@import "research.scss";
+
+.content-container {
+  padding-top: 150px;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container .image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.research-image {
+  margin-bottom: 30px;
+}
+
+.research-image-text {
+  display: block;
+  margin: 50px 35px;
+  font-size: 25pt;
+  line-height: 1.2em;
+  font-family: museo, serif;
+  color: #fff;
+
+  @media (max-width: 500px) {
+    font-size: 22pt;
+    margin: 30px 30px;
+  }
+}
+
+p {
+  font-size: 15pt;
+  margin-bottom: 1em;
+  line-height: 1.4em;
+  color: #47505d;
+}
+
+@media screen and (max-width: 999px) {
+  .content-container {
+    padding-top: 62px;
+  }
+}
+@media screen and (max-width: 449px) {
+  .content-container {
+    padding-top: 58px;
+  }
+}
+@media screen and (max-width: 349px) {
+  .content-container {
+    padding-top: 50px;
+  }
+}

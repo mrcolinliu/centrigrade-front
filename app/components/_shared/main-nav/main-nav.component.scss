@@ -1,0 +1,155 @@
+/*
+*********************************************************
+* Warning this CSS is not encapsulated in the component *
+* so consider it global css, watch out for side effects *
+*********************************************************
+ */
+@import 'variables';
+/* main nav */
+#fixed-header {
+  .sectional-navigation {
+    position: absolute;
+    right: 0;
+    top: 60px;
+
+    li {
+      float: left;
+
+      &:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      &.current a {
+        color: $color_fountain_blue_approx;
+      }
+    }
+
+    a {
+      color: $color_dove_gray_approx;
+      font: 300 16px/20px $font_stack_serif;
+
+      &:hover {
+        color: $color_fountain_blue_approx;
+      }
+
+      &.disabled {
+        color: $color_celeste_approx;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .account-links {
+    position: absolute;
+    right: 0;
+    top: 20px;
+
+    li {
+      float: left;
+
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+
+      a {
+        background: no-repeat 50% 50%;
+        background-size: 28px;
+        display: block;
+        height: 28px;
+        text-indent: -8000px;
+        width: 28px;
+
+        &.help {
+          background-image: url("/assets/images/help-icon.png");
+
+          &:hover {
+            background-image: url("/assets/images/help-icon-hover.png");
+          }
+        }
+
+        &.settings {
+          background-image: url("/assets/images/settings-icon.png");
+
+          &:hover {
+            background-image: url("/assets/images/settings-icon-hover.png");
+          }
+        }
+
+        &.logout {
+          background-image: url("/assets/images/logout-icon.png");
+
+          &:hover {
+            background-image: url("/assets/images/logout-icon-hover.png");
+          }
+        }
+      }
+    }
+  }
+}
+
+#fixed-aside {
+  .sectional-navigation ul {
+    margin-left: -8px;
+    width: 8000px;
+
+    li {
+      padding-left: 48px;
+
+      a {
+        color: $color_celeste_approx;
+        display: block;
+        font: 300 16px/60px $font_stack_serif;
+        height: 60px;
+
+        &:hover {
+          color: $color_fountain_blue_approx;
+        }
+
+        &.disabled {
+          color: $color_dove_gray_approx;
+          pointer-events: none;
+        }
+      }
+
+      &.current {
+        background: url("/assets/images/menu-marker.png") no-repeat 0 50%;
+        background-size: 8px 16px;
+
+        a {
+          color: $color_fountain_blue_approx;
+        }
+      }
+
+      + li a {
+        border-top: 1px solid $color_dove_gray_approx;
+      }
+    }
+  }
+}
+
+.account-links {
+  a {
+    line-height: 36px;
+  }
+}
+@media screen and(min-width: 1200px) {
+  #fixed-header {
+    .sectional-navigation {
+      right: 130px;
+      top: 40px;
+    }
+
+    .account-links {
+      right: 0;
+      top: 37px;
+    }
+  }
+}
+@media screen and(max-width: 999px) {
+  #fixed-header {
+    .account-links,
+    .sectional-navigation {
+      display: none;
+    }
+  }
+}

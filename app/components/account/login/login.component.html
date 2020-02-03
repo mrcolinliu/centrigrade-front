@@ -1,0 +1,38 @@
+<div id="scrn-table">
+  <div id="scrn-cell">
+    <div id="scrn-p">
+      <header id="scrn-h">
+        <div class="centigrade-logo">
+          <img src="assets/images/centigrade-logo.png" alt="Centigrade">
+        </div>
+        <div class="centigrade-strap">
+          {{locale.introText}}
+        </div>
+      </header>
+      <form id="scrn-c" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" novalidate="novalidate">
+        <div *ngIf="messageCopy" class="{{ messageClass }}" role="errorMessage">{{ messageCopy }}</div>
+        <div *ngIf="signedOut" class="alert" role="alert">{{ locale.signedOutMessage }}</div>
+
+        <div class="form-control">
+          <input (click)="onClickInput()" type="email" class="input-control" placeholder="{{locale.emailPlaceholder}}" [formControl]="loginForm.controls['email']">
+        </div>
+        <div class="form-control">
+          <input (click)="onClickInput()" type="{{passwordType}}" class="input-control show-pad" placeholder="{{locale.passwordPlaceholder}}" formControlName="password"
+            [formControl]="loginForm.controls['password']">
+          <span><a (click)="togglePassword()">{{showPassword ? locale.hidePasswordText : locale.showPasswordText}}</a></span>
+        </div>
+        <div class="form-control">
+          <button type="submit" class="input-control button" [disabled]="formSubmitted">{{locale.loginButtonText}}</button>
+        </div>
+        <div class="forgotton-pwd">
+          <a routerLink="/forgotten-login" class="underline">{{locale.forgottenLoginLinkText}}</a>
+        </div>
+      </form>
+      <footer id="scrn-f">
+        <div class="sign-up">
+          {{locale.noAccountText}} <a routerLink="/register">{{locale.registerLinkText}}</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

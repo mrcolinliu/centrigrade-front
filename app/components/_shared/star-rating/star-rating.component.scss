@@ -1,0 +1,120 @@
+:host {
+  position: relative;
+
+  &[mode="edit"] {
+    cursor: pointer;
+    ul li {
+      background-size: 26px 26px;
+      height: 26px;
+      width: 26px;
+    }
+    .star-unrated {
+      width: auto;
+      display: inline-block;
+      position: relative;
+      height: auto;
+      top: -7px;
+    }
+  }
+
+  .star-unrated {
+    display: inline-block;
+    margin-bottom: 3px;
+    width: 85px;
+  }
+
+  ul {
+    display: inline-block;
+    margin-left: 5px;
+    margin-top: 3px;
+    user-select: none;
+  }
+
+  ul li {
+    background: transparent no-repeat 50% 50%;
+    background-size: 13px 13px;
+    display: inline-block;
+    height: 13px;
+    margin-left: 3px;
+    width: 13px;
+  }
+
+  ul li.star-unrated {
+    width: auto;
+    display: inline-block;
+    position: relative;
+    height: auto;
+    top: 0px;
+  }
+
+  ul li.full-star {
+    background-image: url(/assets/images/filled-star.png);
+  }
+
+  ul li.half-star {
+    background-image: url(/assets/images/half-filled-star.png);
+  }
+
+  ul li.empty-star {
+    background-image: url(/assets/images/unfilled-star.png);
+  }
+
+  ul.highlight li.full-star {
+    background-image: url(/assets/images/highlight-filled-star.png);
+  }
+
+  ul.highlight li.half-star {
+    background-image: url(/assets/images/highlight-half-filled-star.png);
+  }
+
+  ul.highlight li.empty-star {
+    background-image: url(/assets/images/highlight-unfilled-star.png);
+  }
+
+  ul.small {
+    display: inline;
+  }
+  ul.small li {
+    background: transparent no-repeat 50% 50%;
+    background-size: 20px 19px;
+    display: inline-block;
+    height: 22px;
+    margin-left: 3px;
+    width: 20px;
+    vertical-align: middle;
+  }
+  ul.small li button {
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+    height: 22px;
+    width: 20px;
+  }
+  ul.small li.full-star {
+    background-image: url(/assets/images/filled-star-navy.png);
+  }
+  ul.small li.empty-star {
+    background-image: url(/assets/images/unfilled-star-navy.png);
+  }
+  ul.small li.not-rated {
+    background-image: url(/assets/images/unfilled-star-grey.png);
+  }
+}
+
+@media (max-width: 1300px) {
+  :host {
+    &[mode="edit"] {
+      ul {
+        padding-bottom: 12px;
+      }
+      .star-unrated {
+        position: absolute;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+      }
+    }
+  }
+}

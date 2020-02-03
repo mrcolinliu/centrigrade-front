@@ -1,0 +1,83 @@
+<div class="content-container">
+  <div class="section columnar">
+      <div>
+          <h1 class="heading">
+              {{locale.titleText}}
+          </h1>
+      </div>
+      <div>
+          <div class="input-button">
+              <button class="proceed" routerLink="/centigrade/research/edit">{{locale.proceedButtonText}}</button>
+          </div>
+      </div>
+  </div>
+
+  <div class="section text-block your-research-areas" *ngIf="courses != null">
+      <div class="research-area" *ngFor="let course of courses">
+          <div class="simple">
+              <h4 class="dark area-header"><a (click)="goToCourse(course.courseId)">{{course.title}}</a></h4>
+              <p class="normal light course">
+                {{course.subtitle}}
+              </p>
+              <div class="columnar tri-col">
+                  <div class="rating">
+                      <span>
+                          {{locale.overallRatingLabelText}}
+                      </span>
+                      <ul>
+                        <li [class.full-star]="course.userRating > 0" [class.empty-star]="course.userRating == 0"></li>
+                        <li [class.full-star]="course.userRating > 1" [class.empty-star]="course.userRating <= 1"></li>
+                        <li [class.full-star]="course.userRating > 2" [class.empty-star]="course.userRating <= 2"></li>
+                        <li [class.full-star]="course.userRating > 3" [class.empty-star]="course.userRating <= 3"></li>
+                        <li [class.full-star]="course.userRating > 4" [class.empty-star]="course.userRating <= 4"></li>
+                      </ul>
+                  </div>
+                  <div class="ambitious-rating">
+                      <span>
+                          {{locale.ambitionLevelLabelText}}
+                      </span>
+                      <i class="glyph circle" *ngFor="let i of createRange(course.ambition.outOf)" [class.filled]="course.ambition.value >= i"></i>
+                  </div>
+              </div>
+              <p class="normal input-button expando-button">
+                  <button class="expando" [class.__expanded]="course.isCollapsed" (click)="course.isCollapsed = !course.isCollapsed">{{locale.viewButtonText}}</button>
+              </p>
+          </div>
+          <div class="detailed" [class.__expanded]="course.isCollapsed">
+              <div class="columnar">
+                <div *ngIf="course.researchAreas.length > 0">
+                    <h4>{{locale.courseTitleText}}</h4>
+                    <div class="interests" *ngFor="let area of course.researchAreas">
+                        <div class="interest" [class.add-note]="area.noteOpen">
+                            <h4 class="dark area-header">{{area.areaHeader}}</h4>
+                            <p class="normal light" [innerHTML]="area.userText == null ? '' : area.userText"></p>
+                            <star-rating class="rating not-rated area-rating" [ngClass]="{'disable-click': formSubmitted }" mode="edit" [value]="area.userRating" rating-step="1" size="small" (change)="onResearchAreaRatingChanged($event, area, course.courseId, 'course')" (click)="area.noteOpen = true"></star-rating>
+                            <div class="input-textarea">
+                                <textarea [placeholder]="locale.inputPlaceholder" [value]="area.userText == null ? '' : area.userText" [formControl]="area.noteControl"></textarea>
+                                <div class="characters-remaining">{{area.noteStatus}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="course.researchAreas.length === 0">
+                    <p class="normal light">{{locale.noResearchAreasText}}</p>
+                </div>
+                <div *ngIf="course.institution.researchAreas.length > 0">
+                    <h4>{{locale.universityTitleText}}</h4>
+                    <div class="interests" *ngFor="let area of course.institution.researchAreas">
+                        <div class="interest" [class.add-note]="area.noteOpen">
+                            <h4 class="dark area-header">{{area.areaHeader}}</h4>
+                            <p class="normal light" [innerHTML]="area.userText == null ? '' : area.userText"></p>
+                            <star-rating class="rating not-rated area-rating" mode="edit" [value]="area.userRating" rating-step="1" size="small" (change)="onResearchAreaRatingChanged($event, area, course.institution.institutionId, 'institution')" (click)="area.noteOpen = true"></star-rating>
+                            <div class="input-textarea">
+                                <textarea [placeholder]="locale.inputPlaceholder" [value]="area.userText == null ? '' : area.userText" [formControl]="area.noteControl"></textarea>
+                                <div class="characters-remaining">{{area.noteStatus}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

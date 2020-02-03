@@ -1,0 +1,5 @@
+<div class="background" data-intro="This bar indicates your current progress" data-position="right">
+  <div class="indicator" [ngStyle]="{ height: fillPercentage }">
+    <div [class.top]="value < (max * 0.5)" class="counter">{{value}}</div>
+  </div>
+</div>

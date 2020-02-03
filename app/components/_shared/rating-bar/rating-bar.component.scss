@@ -1,0 +1,31 @@
+.rating-bar {
+  background-color: #efefef;
+}
+
+.rating-bar span {
+  color: white;
+  display: inline-block;
+  font: 400 12px/18px museo, serif;
+  height: 18px;
+  min-width: 15px !important;
+  padding-right: 5px;
+  text-align: right;
+}
+
+.rating-bar span.high {
+  background-color: #39b57d;
+}
+
+.rating-bar span.medium {
+  background-color: #ef8246;
+}
+
+.rating-bar span.low {
+  background-color: #e03200;
+  padding-left: 5px;
+}
+
+.rating-bar span.zero {
+  color: #454f5d;
+  padding-left: 5px;
+}

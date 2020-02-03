@@ -1,0 +1,49 @@
+/*
+*********************************************************
+* Warning this CSS is not encapsulated in the component *
+* so consider it global css, watch out for side effects *
+*********************************************************
+ */
+@import "popup.scss";
+
+.pop-up-mask {
+  &.shown {
+    opacity: 1;
+    z-index: 1000;
+  }
+  transition: opacity 0.2s;
+  opacity: 0;
+  background-color: rgba(69, 79, 93, 0.9);
+  height: 100%;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.template {
+  margin-top: 12px;
+}
+
+.confirm,
+.pop-up-outer .pop-up-inner .pop-up-box .text a {
+  color: #58bfbf;
+  font: 500 15px/24px museo-sans, sans-serif;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: #58bfbf;
+    text-decoration: none;
+  }
+
+  &:active,
+  &:hover {
+    color: lighten(#58bfbf, 15%);
+    text-decoration: none;
+  }
+}

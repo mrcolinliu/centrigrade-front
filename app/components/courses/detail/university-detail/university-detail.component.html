@@ -1,0 +1,143 @@
+<div class="content-container">
+
+  <div class="section full-bleed section-image" *ngIf="institute.image">
+    <img [src]="institute.image" alt="" />
+  </div>
+
+  <div class="section columnar divided" style="padding-top: 40px;" data-step="1" [attr.data-intro]="locale.overlayIntroduction" data-scrollTo="tooltip">
+    <h1 class="cf heading">
+      {{institute.name}}
+      <img *ngIf="institute.logo" [src]="institute.logo" alt="Logo" />
+    </h1>
+  </div>
+
+  <div *ngIf="overview" class="section columnar divided hug-top">
+    <div>
+      <h4>{{overview.header}}</h4>
+      <p class="normal light" [innerHtml]="overview.text | parseFormattedText"></p>
+    </div>
+    <div>
+      <h4>
+        {{locale.rankingsHeading}}
+        <img *ngIf="tefIcon" [src]="tefIcon" style="float: right; max-width: 100px;" alt>
+      </h4>
+      <ul class="info-list">
+        <li *ngFor="let datum of overview.data">
+          <img src="{{datum.key}}" height="15px" class="list-icon"> {{datum.value}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngFor="let row of textSectionRows" class="section columnar divided hug-top">
+    <div *ngIf="row.leftItem.columns == 'double'">
+      <h4>
+        {{row.leftItem.header}}
+      </h4>
+      <p class="normal light" [innerHtml]="row.leftItem.text | parseFormattedText"></p>
+    </div>
+    <div *ngIf="row.leftItem.columns == 'double'">
+      <ul class="info-list" data-step="2" [attr.data-intro]="locale.overlayRanking">
+        <li *ngFor="let datum of row.leftItem.data">
+          <img src="{{datum.key}}" height="15px" class="list-icon"> {{datum.value}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="row.leftItem.columns == 'single'">
+      <h4>
+        {{row.leftItem.header}}
+      </h4>
+      <p class="normal light" [innerHtml]="row.leftItem.text | parseFormattedText"></p>
+      <ul class="info-list" *ngIf="row.leftItem.data">
+        <li *ngFor="let datum of row.leftItem.data">
+          <img src="{{datum.key}}" height="15px" class="list-icon"> {{datum.value}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="row.leftItem && row.rightItem">
+      <h4>
+        {{row.rightItem.header}}
+      </h4>
+      <p class="normal light" [innerHtml]="row.rightItem.text | parseFormattedText"></p>
+      <ul class="info-list" *ngIf="row.rightItem.data">
+        <li *ngFor="let datum of row.rightItem.data">
+          <img src="{{datum.key}}" height="15px" class="list-icon"> {{datum.value}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="locationSection" class="section columnar divided hug-top" data-step="3" [attr.data-intro]="locale.overlayLocation">
+    <h4>{{locationSection.header}}</h4>
+    <div>
+      <p class="normal light" [innerHtml]="locationSection.text | parseFormattedText"></p>
+    </div>
+    <div>
+      <ul class="info-list">
+        <li *ngFor="let datum of locationSection.data">
+          <img src="{{datum.key}}" height="15px" class="list-icon"> {{datum.value}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section full-bleed location-map divided">
+    <agm-map *ngIf="locationSection.map" [latitude]="locationSection.map.latitude" [longitude]="locationSection.map.longitude"
+      [zoom]="zoom">
+      <agm-marker [latitude]="locationSection.map.latitude" [longitude]="locationSection.map.longitude"></agm-marker>
+    </agm-map>
+  </div>
+
+  <div *ngIf="feeSection" class="section columnar divided">
+    <div>
+      <h4>{{feeSection.header}}</h4>
+      <p class="normal light" [innerHtml]="feeSection.text | parseFormattedText"></p>
+    </div>
+    <div>
+      <!--<p class="normal">
+        #####  Open Days
+      </p>-->
+    </div>
+  </div>
+
+  <div class="section columnar divided research-section" data-step="4" [attr.data-intro]="locale.overlayResearch">
+    <div>
+      <h4>{{locale.researchAreasHeaderText}}</h4>
+      <p class="normal light">
+        {{locale.researchAreasSubtitleText}}
+      </p>
+      <div class="interests">
+        <div class="interest" *ngFor="let researchArea of researchAreas" [class.add-note]="researchArea.userRating">
+          <span class="text">{{researchArea.areaHeader}}</span>
+          <star-rating class="rating" mode="edit" [value]="researchArea.userRating" rating-step="1" (change)="onResearchAreaRatingChanged($event, researchArea)"></star-rating>
+          <div class="input-textarea">
+            <textarea placeholder="{{locale.researchAreasAddNotePlaceholder}}" [value]="researchArea.userText == null ? '' : researchArea.userText" [formControl]="researchArea.noteControl"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="input-button">
+        <button routerLink="/centigrade/research/university">{{locale.researchAreasEditButtonText}}</button>
+      </div>
+    </div>
+    <div>
+      <h3>{{locale.notesHeaderText}}</h3>
+      <div class="input-textarea">
+        <textarea placeholder="{{locale.notesPlaceholderText}}" maxlength="500" [value]="note == null ? '' : note" [formControl]="noteControl" class="notes"></textarea>
+        <div class="characters-remaining" *ngIf="noteIsSaving != null && !noteIsSaving">
+          {{locale.notesUpdateLabelText}}
+        </div>
+        <div class="saving characters-remaining" *ngIf="noteIsSaving">
+          {{locale.notesSavingLabelText}}<span>.</span><span>.</span><span>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section text-block">
+    <div class="input-button">
+      <button (click)="goToUniWebsite()" data-step="5" [attr.data-intro]="locale.overlayWebsite">{{locale.viewUniversityButtonText}}</button>
+    </div>
+  </div>
+
+
+</div>

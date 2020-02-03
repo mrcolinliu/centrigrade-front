@@ -1,0 +1,5 @@
+<div class="canvas-container">
+  <canvas baseChart [datasets]="datasets"  [labels]="doughnutChartLabels" [chartType]="chartType"
+    [colors]="chartColors" [options]="options" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" width="auto" height="auto">
+  </canvas>
+</div>

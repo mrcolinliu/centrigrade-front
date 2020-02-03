@@ -1,0 +1,48 @@
+<div id="scrn">
+  <div id="scrn-c">
+
+
+<div id="scrn-table">
+  <div id="scrn-cell">
+    <div id="scrn-p">
+      <header id="scrn-h">
+          <div class="centigrade-logo">
+              <img src="assets/images/centigrade-logo.png" alt="">
+          </div>
+          <div class="centigrade-strap">
+              {{locale.subtitleText}}
+          </div>
+      </header>
+      <div class="sign-up-step">
+          <ol>
+              <li>
+                  <span>Registration</span>
+                  <i>1</i>
+              </li>
+              <li class="current">
+                  <span>Payment</span>
+                  <i>2</i>
+              </li>
+              <li>
+                  <span>Questionnaire</span>
+                  <i>3</i>
+              </li>
+          </ol>
+      </div>
+
+      <div class="message-subtitle">
+        {{locale.titleText}}
+      </div>
+      <div class="message-text">
+        {{locale.messageText}}
+      </div>
+      <button class="form-control btn" (click)="goToPaymentGateway()" [disabled]="formSubmitted">
+        {{locale.buttonText}}
+      </button>
+      <a class="cancel_link" href="#" (click)="signOut()">
+        {{locale.logoutText}}
+      </a>
+
+    </div>
+  </div>
+</div>
